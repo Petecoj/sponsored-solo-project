@@ -51,6 +51,7 @@ class BrowseSponsorsPage extends Component {
         let sponsorListArray = this.props.state.list.map((sponsor, index) => {
             return <SponsorProfileCard key={index}
                                        name={sponsor.username} 
+                                       id={sponsor.id}
              />
         })
 

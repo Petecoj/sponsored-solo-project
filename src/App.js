@@ -11,6 +11,8 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import SponsorProfilePage from './components/SponsorProfilePage/SponsorProfilePage';
 import InfoPage from './components/InfoPage/InfoPage';
+import InitialPage from './components/InitialPage/InitialPage'
+import CreateSponsorProfilePage from './components/CreateSponsorProfilePage/CreateSponsorProfilePage'
 
 
 import './styles/main.css';
@@ -24,6 +26,10 @@ const App = () => (
         <Redirect exact from="/" to="/home" />
         <Route
           path="/home"
+          component={InitialPage}
+        />
+        <Route
+          path="/login"
           component={LoginPage}
         />
         <Route
@@ -41,6 +47,10 @@ const App = () => (
           <Route
           path="/browse"
           component={BrowseSponsorsPage}
+        />
+         <Route
+          path="/create_profile"
+          component={CreateSponsorProfilePage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

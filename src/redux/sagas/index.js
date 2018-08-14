@@ -6,6 +6,7 @@ import axios from 'axios'
 
 export default function* rootSaga() {
   yield takeEvery('GET_CARDS', getCards)
+  yield takeEvery('SEND_MESSAGE', sendMessage)
   yield all([
     userSaga(),
     loginSaga(),
@@ -24,5 +25,13 @@ function* getCards(){
     console.log(sponsorList.data)
   } catch (err) {
     yield console.log(err);
+  }
+}
+function* sendMessage(action){
+  try{
+    console.log('in post saga', action.payload);
+    yield call(axios.post, '/api/sponsor', action.payload)
+  } catch (error) {
+    console.log(error);
   }
 }

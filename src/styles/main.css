@@ -8,9 +8,10 @@ body {
 }
 
 .instructions {
-    background-color: #00acb0;
+    background-color: #2196f3;
     padding: 5px;
     color: #ece7e7;
+    margin: 30px;
 }
 
 form {
@@ -37,6 +38,7 @@ input[type="submit"] {
 
 .message p {
     margin-left: 10px;
+
 }
 
 .message:nth-child(odd) {
@@ -47,8 +49,9 @@ input[type="submit"] {
     background-color: #f8f8f8;
 }
 
+
 .navbar {
-  background-color: #00acb0;
+  background-color: #2196f3;
   width: 100%;
   border-radius: 0px;
 }
@@ -80,4 +83,9 @@ li a:hover {
 }
 html{
     font-size: 50%;
+    background-color: #1769aa
 }
+.link{
+    color: blue;
+}
+

@@ -11,7 +11,6 @@ const list = (state = [], action) => {
     return state
   }
 }
-
 const store = combineReducers({
   user,
   login,

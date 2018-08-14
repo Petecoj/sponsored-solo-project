@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -8,14 +9,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import MessageIcon from '@material-ui/icons/Message';
 import TextsmsIcon from '@material-ui/icons/Textsms';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const styles = theme => ({
@@ -53,15 +58,42 @@ const styles = theme => ({
   },
 });
 
-class RecipeReviewCard extends React.Component {
+class SponsorProfileCard extends React.Component {
   constructor(props){
     super(props)
-  this.state = { expanded: false };
+  this.state = { expanded: false, open: false, user: {} };
   }
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  handleChangeFor = (propertyName) => {    
+    return (event ) => {
+      this.setState({
+       user: {
+          ...this.state.user,
+          [propertyName] : event.target.value,
+          id: this.props.id
+          
+        }
+      })
+    }
+  }
+  sendMessage = () => {
+    this.props.dispatch({
+      type: 'SEND_MESSAGE',
+      payload: this.state.user
+    })
+    this.handleClose();
+  }
 
   render() {
     const { classes } = this.props;
@@ -84,7 +116,8 @@ class RecipeReviewCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="message">
+            <IconButton aria-label="message"
+                        onClick={this.handleClickOpen}>
               <TextsmsIcon />
             </IconButton>
             Message
@@ -102,41 +135,80 @@ class RecipeReviewCard extends React.Component {
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph variant="body1">
-                Method:
-              </Typography>
+              Hobbies/Interests:
               <Typography paragraph>
-                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                minutes.
+                Biking 
+                Hiking 
+                Fishing
               </Typography>
+              Addiction History:
               <Typography paragraph>
-                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
-                chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
-                salt and pepper, and cook, stirring often until thickened and fragrant, about 10
-                minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-              </Typography>
-              <Typography paragraph>
-                Add rice and stir very gently to distribute. Top with artichokes and peppers, and
-                cook without stirring, until most of the liquid is absorbed, 15 to 18 minutes.
-                Reduce heat to medium-low, add reserved shrimp and mussels, tucking them down into
-                the rice, and cook again without stirring, until mussels have opened and rice is
-                just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
+                I started drinking when i was 11 years old and have been sober now for six years
               </Typography>
               <Typography>
-                Set aside off of the heat to let rest for 10 minutes, and then serve.
+      
               </Typography>
             </CardContent>
           </Collapse>
         </Card>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To send a message, please enter your email address or phone number here. Then write a brief message introducing yourself. 
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="First Name"
+              fullWidth
+              onChange={this.handleChangeFor("sender")}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Phone"
+              fullWidth
+              onChange={this.handleChangeFor("phone")}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Email Address"
+              fullWidth
+              onChange={this.handleChangeFor("email")}
+            />
+             <TextField
+              autoFocus
+              margin="dense"
+              label="Message"
+              fullWidth
+              onChange={this.handleChangeFor("message")}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.sendMessage} color="primary">
+              Send
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
 }
 
-RecipeReviewCard.propTypes = {
+SponsorProfileCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(RecipeReviewCard);
+const mapStateToProps = state => ({
+  user: state.user,
+});
+const styledSponsorProfileCard = withStyles(styles)(SponsorProfileCard)
+export default connect(mapStateToProps)(styledSponsorProfileCard);
