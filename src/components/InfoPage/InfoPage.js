@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Nav from '../../components/Nav/Nav';
+import NavBar from '../../components/NavBar/NavBar';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
@@ -26,7 +26,7 @@ class InfoPage extends Component {
       content = (
         <div>
           <p>
-            Info Page
+           EVENTS AND RESOURCES
           </p>
         </div>
       );
@@ -34,7 +34,7 @@ class InfoPage extends Component {
 
     return (
       <div>
-        <Nav />
+        <NavBar />
         { content }
       </div>
     );

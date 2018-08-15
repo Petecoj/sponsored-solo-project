@@ -161,13 +161,7 @@ class SponsorProfileCard extends React.Component {
             <DialogContentText>
               To send a message, please enter your email address or phone number here. Then write a brief message introducing yourself. 
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              label="First Name"
-              fullWidth
-              onChange={this.handleChangeFor("sender")}
-            />
+            
             <TextField
               autoFocus
               margin="dense"

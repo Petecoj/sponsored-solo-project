@@ -1,11 +1,14 @@
 import React from 'react';
+import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { triggerLogout } from '../../redux/actions/loginActions';
 
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import CreateProfileButton from '../CreateProfileButton/CreateProfileButton'
 
 
 const styles = theme => ({
@@ -41,7 +44,15 @@ class InputAdornments extends React.Component {
       
     };
   }
-  
+  componentDidMount() {
+    this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
+    
+  }
+  componentDidUpdate() {
+    if (!this.props.user.isLoading && this.props.user.userName === null) {
+      this.props.history.push('home');
+    }
+  }
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -57,6 +68,8 @@ class InputAdornments extends React.Component {
   };
 
   render() {
+    console.log(this.state);
+    
     const { classes } = this.props;
 
     return (
@@ -110,7 +123,7 @@ class InputAdornments extends React.Component {
 
           />
         </FormControl>
-        
+        <CreateProfileButton newProfile={this.state}/>
         
       </div>
     );
@@ -121,4 +134,4 @@ InputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(InputAdornments);
+export default connect()(withStyles(styles)(InputAdornments));

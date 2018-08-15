@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../../components/Nav/Nav';
 // import { USER_ACTIONS } from '../../redux/actions/userActions';
-import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
 import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
+
 
 
 //views
@@ -43,12 +41,9 @@ class BrowseSponsorsPage extends Component {
   
 
     render() {
-        console.log(this.props.state);
-         this.props.state
-        let content = null;
-        const { classes } = this.props;
+   
 
-        let sponsorListArray = this.props.state.list.map((sponsor, index) => {
+        let sponsorListArray = this.props.state.sponsorList.map((sponsor, index) => {
             return <SponsorProfileCard key={index}
                                        name={sponsor.username} 
                                        id={sponsor.id}

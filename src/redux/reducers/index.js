@@ -3,18 +3,41 @@ import user from './userReducer';
 import login from './loginReducer';
 
 
-const list = (state = [], action) => {
-  switch (action.type){
+const sponsorList = (state = [], action) => {
+  switch (action.type) {
     case 'GET_SPONSORS':
+      return action.payload
+   
+    default:
+      return state
+  }
+}
+const messageList = (state = [], action) => {
+  switch (action.type) {
+    case 'STORE_MESSAGES':
+      return action.payload
+    default:
+      return state
+  }
+}
+const currentSponsor = (state = {}, action) =>{
+  switch (action.type){
+    case 'GET_PROFILE':
     return action.payload
     default:
     return state
   }
 }
+
+
+
 const store = combineReducers({
   user,
   login,
-  list
+  sponsorList,
+  messageList,
+  currentSponsor
+
 });
 
 
