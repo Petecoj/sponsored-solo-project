@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { triggerLogout } from '../../redux/actions/loginActions';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -27,6 +29,11 @@ class SimpleBottomNavigation extends React.Component {
     this.setState({ value });
   };
 
+  logout = () => {
+    this.props.dispatch(triggerLogout());
+    // this.props.history.push('home');
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -42,7 +49,7 @@ class SimpleBottomNavigation extends React.Component {
         <BottomNavigationAction component={Link} to="/info" label="Events/Resources" icon={<EventIcon />} />
         <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="My Profile" icon={<FaceIcon />} />
-        <BottomNavigationAction component={Link} to="/home" label="logout" icon={<Power_Settings_NewIcon />} />
+        <BottomNavigationAction onClick={this.logout} component={Link} to="/home" label="logout" icon={<Power_Settings_NewIcon />} />
 
       </BottomNavigation>
     );
@@ -53,4 +60,4 @@ SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleBottomNavigation);
+export default connect()(withStyles(styles)(SimpleBottomNavigation));

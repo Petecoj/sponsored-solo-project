@@ -23,6 +23,7 @@ const divStyle = {
   height: '100%',
   backgroundImage: `url(${'IMG_2054.jpg'})`,
   backgroundSize: 'cover' 
+ 
   
 };
 
