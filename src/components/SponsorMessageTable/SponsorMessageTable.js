@@ -14,31 +14,35 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    // backgroundColor: theme.palette.common.black,
+    // color: theme.palette.common.white,
+    background: 'rgba(255,255,255,0.5)'
   },
   body: {
-    fontSize: 8,
+    fontSize: 10,
+    // background: 'rgba(255,255,255,0.5)'
   },
 }))(TableCell);
 
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
+    background: 'rgba(255,255,255,0.5)',
+    display: 'flex'
   },
   table: {
     minWidth: 700,
   
   },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
+  // row: {
+  //   '&:nth-of-type(odd)': {
+  //     backgroundColor: theme.palette.background.default,
+  
     
       
-    },
-  },
+  //   },
+  // },
 });
 
 

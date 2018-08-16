@@ -85,15 +85,14 @@ router.put('/update', (req, res) => {
     console.log('got to put', req.body, req.user.id);
     if (req.isAuthenticated) {
         const queryText = `UPDATE "sponsor"
-                            SET "username" = $1,
-                                "email" = $2,
-                                "phone" = $3,
-                                "city" = $4,
-                                "state" = $5,
-                                "hobbies" = $6,
-                                "history" = $7
-                                WHERE id = $8`
-        pool.query(queryText, [req.body.username, req.body.email, req.body.phone, req.body.city, req.body.state, req.body.hobbies, req.body.history, req.user.id])
+                            SET "email" = $1,
+                                "phone" = $2,
+                                "city" = $3,
+                                "state" = $4,
+                                "hobbies" = $5,
+                                "history" = $6
+                                WHERE id = $7`
+        pool.query(queryText, [req.body.email, req.body.phone, req.body.city, req.body.state, req.body.hobbies, req.body.history, req.user.id])
             .then(() => {
                 res.sendStatus(200);
             })

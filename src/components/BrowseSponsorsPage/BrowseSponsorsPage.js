@@ -44,12 +44,16 @@ class BrowseSponsorsPage extends Component {
    
 
         let sponsorListArray = this.props.state.sponsorList.map((sponsor, index) => {
-            return <SponsorProfileCard key={index}
+            if (sponsor.available === true){
+                return (<SponsorProfileCard key={index}
                                        name={sponsor.username} 
                                        id={sponsor.id}
-             />
-        })
-
+                                       sponsor={sponsor}
+                 />)
+            }
+    })
+    
+    
 
         return (
             <div>
@@ -57,7 +61,12 @@ class BrowseSponsorsPage extends Component {
                  <p>
                     Browse Sponsors
                 </p>
+                <input placeholder="Search..."></input>
+
+                <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
                 {sponsorListArray}
+                </div>
+                
             </div>
         );
     }

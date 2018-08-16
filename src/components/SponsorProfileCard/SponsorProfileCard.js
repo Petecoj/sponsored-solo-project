@@ -27,6 +27,7 @@ const styles = theme => ({
   card: {
     maxWidth: 200,
     margin: 25,
+    background: 'rgba(255,255,255,0.5)'
 
   },
   media: {
@@ -97,6 +98,8 @@ class SponsorProfileCard extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.props);
+    
 
     return (
       <div>
@@ -137,13 +140,11 @@ class SponsorProfileCard extends React.Component {
             <CardContent>
               Hobbies/Interests:
               <Typography paragraph>
-                Biking 
-                Hiking 
-                Fishing
+                {this.props.sponsor.hobbies}
               </Typography>
               Addiction History:
               <Typography paragraph>
-                I started drinking when i was 11 years old and have been sober now for six years
+               {this.props.sponsor.history}
               </Typography>
               <Typography>
       
@@ -156,12 +157,19 @@ class SponsorProfileCard extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">Message to {this.props.name}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               To send a message, please enter your email address or phone number here. Then write a brief message introducing yourself. 
             </DialogContentText>
             
+            <TextField
+              autoFocus
+              margin="dense"
+              label="First Name"
+              fullWidth
+              onChange={this.handleChangeFor("sender")}
+            />
             <TextField
               autoFocus
               margin="dense"
@@ -203,6 +211,7 @@ SponsorProfileCard.propTypes = {
 };
 const mapStateToProps = state => ({
   user: state.user,
+  state
 });
 const styledSponsorProfileCard = withStyles(styles)(SponsorProfileCard)
 export default connect(mapStateToProps)(styledSponsorProfileCard);

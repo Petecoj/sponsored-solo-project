@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from 'react-redux'
+import EditProfileButton from '../EditProfileButton/EditProfileButton'
 
 class FormDialog extends React.Component {
     constructor(props){
@@ -50,7 +51,7 @@ class FormDialog extends React.Component {
       
       
     return (
-      <div>
+      <div >
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -115,7 +116,7 @@ class FormDialog extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <button onClick={this.handleClickOpen}>Edit</button>
+        <EditProfileButton handleClickOpen={this.handleClickOpen}/>
       
       </div>
     );

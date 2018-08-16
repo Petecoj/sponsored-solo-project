@@ -18,9 +18,17 @@ import CreateSponsorProfilePage from './components/CreateSponsorProfilePage/Crea
 import './styles/main.css';
 import BrowseSponsorsPage from './components/BrowseSponsorsPage/BrowseSponsorsPage';
 
+const divStyle = {
+  width: '100%',
+  height: '100%',
+  backgroundImage: `url(${'IMG_2054.jpg'})`,
+  backgroundSize: 'cover' 
+  
+};
+
 const App = () => (
-  <div>
-    <Header title="Project Base" />
+  <div style={divStyle}>
+    <Header title="Sponsored" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -57,6 +65,7 @@ const App = () => (
 
       </Switch>
     </Router>
+
   </div>
 );
 

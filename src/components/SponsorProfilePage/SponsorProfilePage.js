@@ -8,6 +8,7 @@ import ToggleAvailabilitySwitch from '../ToggleAvailabilitySwitch/ToggleAvaiabil
 import EditProfileDialogue from '../EditProfileDialogue/EditProfileDialogue'
 
 
+
 const mapStateToProps = state => ({
   user: state.user,
   state
@@ -49,14 +50,14 @@ class UserPage extends Component {
     let content
     if (this.props.user.userName) {
       content = (
-        <div>
+        <div style={{color: 'white'}}className ="sponsorPage">
            <button onClick={this.logout}>Log Out</button>
           <h1 id="welcome"> Welcome, { this.props.user.userName }!</h1>
-          <p>Email {this.props.state.currentSponsor.email}</p>
-          <p>Phone {this.props.state.currentSponsor.phone}</p>
-          <p>City/State {this.props.state.currentSponsor.city}</p>
-          <p>Hobbies/Interests{this.props.state.currentSponsor.hobbies}</p>
-          <p>AddictionHistory {this.props.state.currentSponsor.history}</p>
+          <p>Email: {this.props.state.currentSponsor.email}</p>
+          <p>Phone: {this.props.state.currentSponsor.phone}</p>
+          <p>City/State: {this.props.state.currentSponsor.city}</p>
+          <p>Hobbies/Interests: {this.props.state.currentSponsor.hobbies}</p>
+          <p>Addiction History: {this.props.state.currentSponsor.history}</p>
       
         </div>
       );

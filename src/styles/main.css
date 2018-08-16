@@ -1,35 +1,52 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 }
+
+.App-logo {
+    animation: App-logo-spin infinite 2s linear;
+    height: 50px;
+  }
 
 .instructions h1 {
     font-size: 24px;
     font-weight: 700;
 }
+jpg
+{
+  width: 100%;
+  z-index: 0;
 
+}
 .instructions {
-    background-color: #2196f3;
+    /* background: 'rgba(255,255,255,0.5)'; */
+    /* background-color: #2196f3; */
     padding: 5px;
     color: #ece7e7;
     margin: 30px;
 }
 
 form {
-    background-color: #dbd5d5;
+    /* background-color: #dbd5d5; */
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
+    background: 'rgba(255,255,255,0.5)'
+
 }
 
 input {
     margin: 5px;
     margin-bottom: 10px;
+   
 }
 
 input[type="submit"] {
     margin: 10px;
+    background: 'rgba(255,255,255,0.5)'
+
 }
 
 .message {
@@ -75,7 +92,11 @@ li a {
     text-decoration: none;
 
 }
-
+@keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     text-decoration: underline;
@@ -83,9 +104,11 @@ li a:hover {
 }
 html{
     font-size: 80%;
-    background-color: #1769aa
+    background-color: #050505;
 }
 .link{
     color: blue;
 }
-
+h1{
+    font-size: 36px;
+}

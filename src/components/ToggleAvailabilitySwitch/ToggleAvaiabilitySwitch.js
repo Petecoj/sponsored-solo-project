@@ -55,7 +55,7 @@ class SwitchLabels extends React.Component {
             )
         }
         return (
-            <div>
+            <div style={{ marginTop: '10px'}}>
                 {content}
             </div>
         )

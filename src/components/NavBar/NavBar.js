@@ -6,14 +6,16 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import EventIcon from '@material-ui/icons/Event';
 import PersonIcon from '@material-ui/icons/Person';
-import FaceIcon from '@material-ui/icons/Face';
+import SearchIcon from '@material-ui/icons/Search';
+
 import { Link } from 'react-router-dom';
 
 
 const styles = {
-//   root: {
-//     width: 500,
-//   },
+  root: {
+    background: 'rgba(255,255,255,0.5)'
+  },
+  
 };
 
 class SimpleBottomNavigation extends React.Component {
@@ -35,12 +37,13 @@ class SimpleBottomNavigation extends React.Component {
         onChange={this.handleChange}
         showLabels
         className={classes.root}
+       
 
       >
         <BottomNavigationAction component={Link} to="/register" label="Register" icon={<HowToRegIcon />} />
-        <BottomNavigationAction component={Link} to="/info" label="Events/Resources" icon={<EventIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="Sponsor Login" icon={<PersonIcon />} />
-        <BottomNavigationAction label="My Profile" icon={<FaceIcon />} />
+        <BottomNavigationAction component={Link} to="/info" label="Events/Resources" icon={<EventIcon />} />
+        <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
       </BottomNavigation>
     );
   }
