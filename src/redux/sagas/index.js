@@ -12,6 +12,9 @@ export default function* rootSaga() {
   yield takeEvery('UPDATE_PROFILE', updateProfile)
   yield takeEvery('DELETE_ITEM', deleteItem)
   yield takeEvery('TOGGLE_AVAILABILITY', toggleAvailability)
+  yield takeEvery('UPLOAD_PHOTO', uploadPhoto)
+  yield takeEvery('ADD_EVENT', addEvent)
+  yield takeEvery('GET_EVENTS', getEventsList)
 
   yield all([
     userSaga(),
@@ -40,8 +43,6 @@ function* sendMessage(action) {
   }
 }
 function* getMessages() {
-
-
   try {
     console.log('made it to GET users');
     const messages = yield call(axios.get, '/api/sponsor/messages')
@@ -65,15 +66,15 @@ function* getUserInfo() {
       payload: availability.data[0]
     })
 
-    
 
-    
 
-  } catch(error){
+
+
+  } catch (error) {
     console.log(error);
   }
-  
-  
+
+
 }
 function* updateProfile(action) {
   try {
@@ -92,20 +93,51 @@ function* deleteItem(action) {
     yield call(axios.delete, `/api/sponsor/${action.payload}`);
     yield dispatch({
       type: 'GET_MESSAGES'
-      
+
     })
   } catch (err) {
     yield console.log(err);
 
   }
 }
-function* toggleAvailability(){
-  try{
-    yield call(axios.put,'/api/sponsor')
+function* toggleAvailability() {
+  try {
+    yield call(axios.put, '/api/sponsor')
     yield dispatch({
       type: 'GET_USER_INFO'
     })
-  }catch(error){
+  } catch (error) {
     yield console.log(error);
+  }
+}
+
+function* uploadPhoto(action) {
+  try {
+    yield call(axios.post, 'api/sponsor/photo', action.payload)
+    yield dispatch({
+      type: 'GET_USER_INFO'
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* addEvent(action){
+  try{
+    yield call(axios.post,'api/sponsor/events', action.payload)
+  }catch(error){
+    console.log(error); 
+  }
+}
+function* getEventsList(){
+  try{ 
+    const eventsList = yield call(axios.get, '/api/sponsor/events')
+    yield dispatch({
+      type: 'STORE_EVENTS',
+      payload: eventsList.data
+    })
+
+  }catch(error){
+    console.log(error);
+    
   }
 }

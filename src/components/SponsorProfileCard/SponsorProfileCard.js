@@ -99,14 +99,14 @@ class SponsorProfileCard extends React.Component {
   render() {
     const { classes } = this.props;
     console.log(this.props);
-    
+    let cityState = `${this.props.sponsor.city}, ${this.props.sponsor.state}` 
 
     return (
       <div>
         <Card className={classes.card}>
           <CardHeader
             title={this.props.name}
-            subheader="Bloomington, MN"
+            subheader={cityState}
           />
           <CardMedia
             className={classes.media}
@@ -115,7 +115,7 @@ class SponsorProfileCard extends React.Component {
           />
           <CardContent>
             <Typography component="p">
-           Years Sober: 1
+           Years Sober: {this.props.sponsor.years_sober}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>

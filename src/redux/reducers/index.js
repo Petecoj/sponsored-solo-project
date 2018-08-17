@@ -28,6 +28,14 @@ const currentSponsor = (state = {}, action) =>{
     return state
   }
 }
+const eventList = (state=[], action) =>{
+  switch (action.type){
+    case 'STORE_EVENTS':
+    return action.payload
+    default: 
+    return state
+  }
+}
 
 
 
@@ -36,7 +44,8 @@ const store = combineReducers({
   login,
   sponsorList,
   messageList,
-  currentSponsor
+  currentSponsor,
+  eventList
 
 });
 

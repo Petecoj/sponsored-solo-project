@@ -29,7 +29,9 @@ const styles = theme => ({
     width: '100%',
     overflowX: 'auto',
     background: 'rgba(255,255,255,0.5)',
-    display: 'flex'
+    display: 'flex',
+    marginBottom: '50px'
+
   },
   table: {
     minWidth: 700,

@@ -89,7 +89,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className="submitBtn">
             <input
               type="submit"
               name="submit"

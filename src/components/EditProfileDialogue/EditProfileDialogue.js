@@ -106,6 +106,13 @@ class FormDialog extends React.Component {
               fullWidth
               onChange={this.handleChangeFor("history")}
             />
+              <TextField
+              autoFocus
+              margin="dense"
+              label="Years Sober"
+              fullWidth
+              onChange={this.handleChangeFor("years_sober")}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">

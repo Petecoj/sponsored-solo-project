@@ -13,16 +13,21 @@ import SponsorProfilePage from './components/SponsorProfilePage/SponsorProfilePa
 import InfoPage from './components/InfoPage/InfoPage';
 import InitialPage from './components/InitialPage/InitialPage'
 import CreateSponsorProfilePage from './components/CreateSponsorProfilePage/CreateSponsorProfilePage'
-
-
 import './styles/main.css';
 import BrowseSponsorsPage from './components/BrowseSponsorsPage/BrowseSponsorsPage';
+import EventsPage from './components/EventsPage/EventsPage'
 
 const divStyle = {
   width: '100%',
   height: '100%',
   backgroundImage: `url(${'IMG_2054.jpg'})`,
-  backgroundSize: 'cover' 
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  position: 'relative',
+  margin: 0,
+ 
+ 
  
   
 };
@@ -30,6 +35,7 @@ const divStyle = {
 const App = () => (
   <div style={divStyle}>
     <Header title="Sponsored" />
+    {/* <img src={'IMG_2054.jpg'} style={{position: 'fixed'}}/> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -60,6 +66,10 @@ const App = () => (
          <Route
           path="/create_profile"
           component={CreateSponsorProfilePage}
+        />  
+        <Route
+          path="/events"
+          component={EventsPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
-import SponsorMessageTable from '../SponsorMessageTable/SponsorMessageTable'
-import ToggleAvailabilitySwitch from '../ToggleAvailabilitySwitch/ToggleAvaiabilitySwitch'
-import EditProfileDialogue from '../EditProfileDialogue/EditProfileDialogue'
+import SponsorMessageTable from '../SponsorMessageTable/SponsorMessageTable';
+import ToggleAvailabilitySwitch from '../ToggleAvailabilitySwitch/ToggleAvaiabilitySwitch';
+import EditProfileDialogue from '../EditProfileDialogue/EditProfileDialogue';
+import ImageUploader from '../ImageUploader/ImageUploader'
 
 
 
@@ -51,14 +52,13 @@ class UserPage extends Component {
     if (this.props.user.userName) {
       content = (
         <div style={{color: 'white'}}className ="sponsorPage">
-           <button onClick={this.logout}>Log Out</button>
           <h1 id="welcome"> Welcome, { this.props.user.userName }!</h1>
           <p>Email: {this.props.state.currentSponsor.email}</p>
           <p>Phone: {this.props.state.currentSponsor.phone}</p>
           <p>City/State: {this.props.state.currentSponsor.city}</p>
           <p>Hobbies/Interests: {this.props.state.currentSponsor.hobbies}</p>
           <p>Addiction History: {this.props.state.currentSponsor.history}</p>
-      
+          <p>Years Sober: {this.props.state.currentSponsor.years_sober}</p>      
         </div>
       );
     }
@@ -68,6 +68,7 @@ class UserPage extends Component {
     return (
       <div>
         <Nav />
+        <ImageUploader/>
         { content }
         <EditProfileDialogue handleClickOpen={this.handleClickOpen}
                              handleClose={this.handleClose}
@@ -76,6 +77,7 @@ class UserPage extends Component {
                              
         />
         <ToggleAvailabilitySwitch messageList={this.props.state.messageList}/>
+        
         <SponsorMessageTable messageList={this.props.state.messageList}/>
         
       </div>

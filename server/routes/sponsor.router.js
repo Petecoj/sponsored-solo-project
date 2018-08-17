@@ -90,9 +90,10 @@ router.put('/update', (req, res) => {
                                 "city" = $3,
                                 "state" = $4,
                                 "hobbies" = $5,
-                                "history" = $6
-                                WHERE id = $7`
-        pool.query(queryText, [req.body.email, req.body.phone, req.body.city, req.body.state, req.body.hobbies, req.body.history, req.user.id])
+                                "history" = $6,
+                                "years_sober" = $7
+                                WHERE id = $8`
+        pool.query(queryText, [req.body.email, req.body.phone, req.body.city, req.body.state, req.body.hobbies, req.body.history, req.body.years_sober, req.user.id])
             .then(() => {
                 res.sendStatus(200);
             })
@@ -141,6 +142,38 @@ router.get('/available', (req, res) => {
         res.sendStatus(403)
     }
 });
+
+router.get('/events', (req, res) => {
+
+    const queryText = `SELECT * FROM events;`;
+    pool.query(queryText)
+        .then((results) => {
+            res.send(results.rows)
+            console.log(results.rows);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+    
+});
+router.post('/events', (req, res) => {
+    console.log('got to post', req.body);
+    if (req.isAuthenticated) {
+        const queryText = `INSERT INTO "events" ("event","description", "city", "date") VALUES ($1,$2,$3,$4)`
+        pool.query(queryText, [req.body.event, req.body.description, req.body.city, req.body.date, ])
+            .then(() => {
+                res.sendStatus(200);
+            })
+            .catch((error) => {
+                console.log(error);
+                res.sendStatus(500)
+            })
+    } else {
+        res.sendStatus(403);
+    }
+
+});
+
 
 
 module.exports = router;

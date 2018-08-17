@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Nav from '../../components/Nav/Nav';
+import NavBar from '../../components/NavBar/NavBar';
 // import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
 import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
+// import SearchCardsFilter from '../SearchCardsFilter/SearchCardsFilter'
 
 
 
@@ -32,12 +33,26 @@ const styles = theme => ({
 class BrowseSponsorsPage extends Component {
     constructor(props) {
         super(props)
+        this.state={
+            selectedCard: [],
+            allSponsors: this.props.state.sponsorList
+        }
     }
     componentDidMount() {
         this.props.dispatch({ type: 'GET_CARDS' })
+        
+
+    }
+    componentDidUpdate(){
+        console.log(this.props.state.sponsorList);
+        
     }
 
-
+    handleChange = name => value => {
+        this.setState({
+          [name]: value,
+        });
+      };
   
 
     render() {
@@ -51,18 +66,19 @@ class BrowseSponsorsPage extends Component {
                                        sponsor={sponsor}
                  />)
             }
-    })
+    }) 
+    
     
     
 
         return (
             <div>
-                <Nav />
-                 <p>
+                {/* <SearchCardsFilter/> */}
+                <NavBar />
+                 <h2 style={{color:'lightGrey', textAlign: 'center', fontSize: '36px'}}>
                     Browse Sponsors
-                </p>
+                </h2>
                 <input placeholder="Search..."></input>
-
                 <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
                 {sponsorListArray}
                 </div>
