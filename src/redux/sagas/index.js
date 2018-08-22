@@ -15,6 +15,9 @@ export default function* rootSaga() {
   yield takeEvery('UPLOAD_PHOTO', uploadPhoto)
   yield takeEvery('ADD_EVENT', addEvent)
   yield takeEvery('GET_EVENTS', getEventsList)
+  yield takeEvery('NEW_EVENT', uploadEventPhoto)
+
+  
 
   yield all([
     userSaga(),
@@ -113,7 +116,9 @@ function* toggleAvailability() {
 
 function* uploadPhoto(action) {
   try {
-    yield call(axios.post, 'api/sponsor/photo', action.payload)
+    console.log(action.payload, "paylooood");
+    
+    yield call(axios.put, 'api/sponsor/photo', action.payload)
     yield dispatch({
       type: 'GET_USER_INFO'
     })
@@ -124,6 +129,9 @@ function* uploadPhoto(action) {
 function* addEvent(action){
   try{
     yield call(axios.post,'api/sponsor/events', action.payload)
+    yield dispatch({
+      type: "GET_EVENTS"
+    })
   }catch(error){
     console.log(error); 
   }
@@ -139,5 +147,15 @@ function* getEventsList(){
   }catch(error){
     console.log(error);
     
+  }
+}
+function* uploadEventPhoto(action) {
+  try {
+    yield call(axios.put, 'api/sponsor/events_photo', action.payload)
+    yield dispatch({
+      type: 'GET_EVENTS'
+    })
+  } catch (error) {
+    console.log(error);
   }
 }

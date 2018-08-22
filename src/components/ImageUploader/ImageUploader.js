@@ -1,65 +1,73 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import * as filestack from 'filestack-js';
+import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
+
+
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+      color: 'green'
+    },
+    leftIcon: {
+      marginRight: theme.spacing.unit,
+    },
+    rightIcon: {
+      marginLeft: theme.spacing.unit,
+    },
+    iconSmall: {
+      fontSize: 20,
+    },
+    
+  });
+  
 
 class ImageUpload extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {file: '',imagePreviewUrl: ''};
+        super(props);
+        this.state = { file: '', imagePreviewUrl: '' };
+        this.apiKey = 'AEI4el0aFQVy89sthpcBdz'
+        this.client = filestack.init(this.apiKey);
+        this.options = {
+            uploadInBackground: false,
+            onUploadDone: this.showFileData
+        };
     }
-  
-    _handleSubmit(event) {
-      event.preventDefault();
-      // TODO: do something with -> this.state.file
-      console.log('handle uploading-', this.state.file);
-      this.props.dispatch({
-        type: 'UPDATE_PROFILE',
-        payload: this.state.file
-      })
-      
+
+    showFileData = (response) => {
+        console.log(response);
+        console.log('newenevent', this.props.newEvent);
+        // eventUrl = response.filesUploaded[0]
+        this.props.dispatch({
+            type: this.props.type,
+            payload: {
+                photo: response.filesUploaded[0],
+                event: this.props.newEvent
+        }})
+
     }
-  
-    _handleImageChange(e) {
-      e.preventDefault();
-  
-      let reader = new FileReader();
-      let file = e.target.files[0];
-  
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          imagePreviewUrl: reader.result
-        });
-      }
-  
-      reader.readAsDataURL(file)
-    }
-  
+   
+
+
     render() {
-      let {imagePreviewUrl} = this.state;
-      let $imagePreview = null;
-      if (imagePreviewUrl) {
-        $imagePreview = (<img src={imagePreviewUrl} />);
-      } else {
-        $imagePreview = (<div className="previewText"></div>);
-      }
-  
-      return (
-        <div className="previewComponent">
-          <form onSubmit={(e)=>this._handleSubmit(e)}>
-            <input className="fileInput" 
-              type="file" 
-              onChange={(e)=>this._handleImageChange(e)} />
-            <button className="submitButton" 
-              type="submit" 
-              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
-          </form>
-          <div className="imgPreview">
-            {$imagePreview}
-          </div>
-        </div>
-      )
-    }
-  }
-  export default connect()(ImageUpload)
     
+        const { classes } = this.props;
+
+
+        return (
+            <form style={{ float: 'right', height: 50 }}>
+                <label for="fileupload">Select a file to upload</label>
+                {/* <input type="file" id="fileupload"/> */}
+                <Button onClick={() => this.client.picker(this.options).open()} variant="contained" color="default" className={classes.button}>
+                    Upload
+                <CloudUploadIcon className={classes.rightIcon} />
+                </Button>
+            </form>
+        )
+    }
+}
+export default connect()(withStyles(styles)(ImageUpload));
+

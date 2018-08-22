@@ -55,7 +55,7 @@ class SwitchLabels extends React.Component {
             )
         }
         return (
-            <div style={{ marginTop: '10px'}}>
+            <div style={{ borderRadius: 25 ,marginTop: '10px', backgroundColor: 'lightSkyBlue', width: 120, height: 50, margin: 20, padding: 5}}>
                 {content}
             </div>
         )

@@ -65,7 +65,7 @@ class LoginPage extends Component {
     return (
       <div>
         { this.renderAlert() }
-        <form onSubmit={this.login}>
+        <form style={{ color:'white'}} onSubmit={this.login}>
           <h1>Login</h1>
           <div>
             <label htmlFor="username">
@@ -98,6 +98,9 @@ class LoginPage extends Component {
             <Link to="/register">Register</Link>
           </div>
         </form>
+        <div className="space" >
+
+        </div>
       </div>
     );
   }

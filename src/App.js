@@ -26,16 +26,11 @@ const divStyle = {
   backgroundRepeat: 'no-repeat',
   position: 'relative',
   margin: 0,
- 
- 
- 
-  
 };
 
 const App = () => (
   <div style={divStyle}>
     <Header title="Sponsored" />
-    {/* <img src={'IMG_2054.jpg'} style={{position: 'fixed'}}/> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />

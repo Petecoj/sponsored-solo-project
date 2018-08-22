@@ -31,9 +31,7 @@ const styles = theme => ({
 class EventListPage extends Component {
     constructor(props) {
         super(props)
-        this.state={
- 
-        }
+    
     }
     
     componentDidMount(){
@@ -58,7 +56,7 @@ class EventListPage extends Component {
 
         return (
             <div>
-                 <h2 style={{color:'lightGrey', textAlign: 'center', fontSize: '36px'}}>
+                 <h2 style={{color:'white', textAlign: 'center', fontSize: '24px'}}>
                     Events Happening in Your city
                 </h2>
                 <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>

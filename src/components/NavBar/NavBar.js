@@ -15,8 +15,12 @@ import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
-    background: 'rgba(255,255,255,0.5)'
+    background: 'rgba(255,255,255,0.5)',
+    
   },
+  icon:{
+
+  }
   
 };
 
@@ -39,11 +43,13 @@ class SimpleBottomNavigation extends React.Component {
         onChange={this.handleChange}
         showLabels
         className={classes.root}
+   
+       
        
 
       >
-        <BottomNavigationAction component={Link} to="/register" label="Register" icon={<HowToRegIcon />} />
-        <BottomNavigationAction component={Link} to="/login" label="Sponsor Login" icon={<PersonIcon />} />
+        <BottomNavigationAction  styles={{backgroundColor: 'lightGreen'}} component={Link} to="/register" label="Register" icon={<HowToRegIcon />} />
+        <BottomNavigationAction component={Link} to="/login" label="Sponsor Login" className={classes.icon} icon={<PersonIcon />} />
         <BottomNavigationAction component={Link} to="/events" label="Events" icon={<EventIcon />}/>
         <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
         <BottomNavigationAction component={Link} to="/info" label="Resources" icon={<FolderIcon />} />

@@ -11,7 +11,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 import TextsmsIcon from '@material-ui/icons/Textsms';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
@@ -25,14 +24,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = theme => ({
   card: {
-    maxWidth: 200,
+    width: 225,
+    // maxWidth: 200,
     margin: 25,
     background: 'rgba(255,255,255,0.5)'
-
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '86.25%', // 16:9
   },
   actions: {
     display: 'flex',
@@ -42,27 +40,17 @@ const styles = theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
-    },
+    marginLeft: 'auto'
   },
   Typography:{
   htmlFontSize: 30
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    // size: 
-    backgroundColor: red[500],
   },
 });
 
 class SponsorProfileCard extends React.Component {
   constructor(props){
     super(props)
-  this.state = { expanded: false, open: false, user: {} };
+  this.state = { expanded: false, open: false, user: {receiver:this.props.reciever_phone} };
   }
 
   handleExpandClick = () => {
@@ -78,17 +66,25 @@ class SponsorProfileCard extends React.Component {
   };
   handleChangeFor = (propertyName) => {    
     return (event ) => {
+     
+      
       this.setState({
        user: {
           ...this.state.user,
           [propertyName] : event.target.value,
-          id: this.props.id
+          id: this.props.id,
+          receiver_phone:this.props.sponsor.phone
           
         }
       })
+      console.log(this.state.user.receiver_phone);
+
+
     }
   }
   sendMessage = () => {
+    console.log(this.state);
+    
     this.props.dispatch({
       type: 'SEND_MESSAGE',
       payload: this.state.user
@@ -97,22 +93,28 @@ class SponsorProfileCard extends React.Component {
   }
 
   render() {
+
+
     const { classes } = this.props;
-    console.log(this.props);
+    
     let cityState = `${this.props.sponsor.city}, ${this.props.sponsor.state}` 
 
     return (
       <div>
         <Card className={classes.card}>
-          <CardHeader
+        <CardHeader
             title={this.props.name}
-            subheader={cityState}
+     
           />
           <CardMedia
             className={classes.media}
-            image="IMG_0473.jpg"
-            title="Contemplative Reptile"
+            image={this.props.sponsor.photo}
+           
           />
+           <CardHeader
+            subheader={cityState}
+          />
+           
           <CardContent>
             <Typography component="p">
            Years Sober: {this.props.sponsor.years_sober}
@@ -131,9 +133,9 @@ class SponsorProfileCard extends React.Component {
               onClick={this.handleExpandClick}
               aria-expanded={this.state.expanded}
               aria-label="Bio"
-              text= "Bio"
-            >
+            > Info
               <ExpandMoreIcon />
+              
             </IconButton>
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>

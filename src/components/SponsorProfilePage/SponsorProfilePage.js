@@ -46,12 +46,11 @@ class UserPage extends Component {
   profile;
 
   render() {
-    console.log(this.props.state.currentSponsor);
     
     let content
     if (this.props.user.userName) {
       content = (
-        <div style={{color: 'white'}}className ="sponsorPage">
+        <div style={{ color: 'white', marginLeft: 50,fontSize: 18}}className ="sponsorPage">
           <h1 id="welcome"> Welcome, { this.props.user.userName }!</h1>
           <p>Email: {this.props.state.currentSponsor.email}</p>
           <p>Phone: {this.props.state.currentSponsor.phone}</p>
@@ -68,16 +67,23 @@ class UserPage extends Component {
     return (
       <div>
         <Nav />
-        <ImageUploader/>
-        { content }
+        <ImageUploader type={'UPLOAD_PHOTO'}/>
+        <ToggleAvailabilitySwitch messageList={this.props.state.messageList}/>
+
+        
         <EditProfileDialogue handleClickOpen={this.handleClickOpen}
                              handleClose={this.handleClose}
                              id={this.props.user.id}
-                              sponsor={this.profile}
+                              sponsor={this.props.state.currentSponsor}
+                              
                              
         />
-        <ToggleAvailabilitySwitch messageList={this.props.state.messageList}/>
         
+        
+        <div style={{margin: '20px', float: 'right'}}>
+        <img height="300px" width="auto" src={this.props.state.currentSponsor.photo}/>
+        </div>
+        { content }
         <SponsorMessageTable messageList={this.props.state.messageList}/>
         
       </div>

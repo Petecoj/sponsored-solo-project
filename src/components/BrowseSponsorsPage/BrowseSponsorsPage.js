@@ -75,8 +75,8 @@ class BrowseSponsorsPage extends Component {
             <div>
                 {/* <SearchCardsFilter/> */}
                 <NavBar />
-                 <h2 style={{color:'lightGrey', textAlign: 'center', fontSize: '36px'}}>
-                    Browse Sponsors
+                 <h2 style={{color:'white', textAlign: 'center', fontSize: '36px'}}>
+                    BROWSE SPONSORS
                 </h2>
                 <input placeholder="Search..."></input>
                 <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>

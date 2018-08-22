@@ -17,8 +17,8 @@ function EditProfileButton(props) {
   return (
     <div>
      
-      <Button onClick={props.handleClickOpen} variant="contained" color="primary" className={classes.button}>
-        Edit
+      <Button style={{backgroundColor:'lightSkyBlue'}} onClick={props.handleClickOpen} variant="contained" color="primary" className={classes.button}>
+        Edit Profile
       </Button>
       
     </div>

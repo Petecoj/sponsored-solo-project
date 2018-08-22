@@ -1,14 +1,21 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Arial Black", Gadget, sans-serif	;
     
     
 }
+.space{
+    height: 200px
+
+  
+
+}
+
 .previewComponent{
     float:right
 }
 
 .App-logo {
-    animation: App-logo-spin infinite 2s linear;
+    animation: App-logo-spin infinite 5s linear;
     height: 50px;
   }
 
@@ -79,10 +86,11 @@ input[type="submit"] {
 }
 
 ul {
-    list-style-type: none;
+    /* list-style-type: none; */
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: 'rgba(255,255,255,0.5)'
 }
 
 li {
@@ -107,6 +115,9 @@ li a:hover {
     text-decoration: underline;
     color: #eee;
 }
+a{
+    color: lightskyblue
+}
 html{
     font-size: 80%;
     background-color: #050505;
@@ -114,33 +125,36 @@ html{
 
   
 }
-
+img {
+    color: lightblue,
+    
+}
 h1{
     font-size: 36px;
 }
 h3{
   margin-left: 15px
 }
-.fileInput{
+/* .fileInput{ */
   /* border-bottom: 4px solid lightgray;
   border-right: 4px solid lightgray;
   border-top: 1px solid black;
   border-left: 1px solid black; */
-  padding: 10px;
+  /* padding: 10px;
   margin: 15px;
   cursor: pointer;
-}
-.imgPreview{
-  text-align: center;
+} */
+/* .imgPreview{
+  text-align: center; */
   /* margin: 5px 15px; */
-  height: 200px;
-  width: 300px;
+  /* height: 250px;
+  width: 400px; */
   /* border-left: 1px solid gray;
   border-right: 1px solid gray;
   border-top: 5px solid gray;
   border-bottom: 5px solid gray; */
-}
-.previewText{
+/* } */
+/* .previewText{
   width: 100%;
   margin-top: 20px;
 }
@@ -162,7 +176,7 @@ h3{
   text-align: center;
   width: 500px;
 }
-/* img{
+img{
 width: 100%;
 height: 100%;
 } */
