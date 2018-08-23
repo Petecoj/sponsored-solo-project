@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EventListPage from '../EventListPage/EventListPage'
-import EventPageForm from '../EventPageForm/EventPageForm'
 import NavBar from '../../components/NavBar/NavBar';
 
 const mapStateToProps = state => ({
@@ -16,7 +15,7 @@ class InfoPage extends Component {
     return (
       <div>
         <NavBar />
-        <EventPageForm/>
+        
         <EventListPage/>
        
       </div>

@@ -11,16 +11,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    // backgroundColor: theme.palette.common.black,
-    // color: theme.palette.common.white,
     background: 'rgba(255,255,255,0.5)'
   },
   body: {
     fontSize: 10,
-    // background: 'rgba(255,255,255,0.5)'
+
   },
 }))(TableCell);
 
@@ -37,14 +37,6 @@ const styles = theme => ({
     minWidth: 700,
   
   },
-  // row: {
-  //   '&:nth-of-type(odd)': {
-  //     backgroundColor: theme.palette.background.default,
-  
-    
-      
-  //   },
-  // },
 });
 
 
@@ -62,8 +54,8 @@ class CustomizedTable extends Component {
     } else {
       this.props.dispatch({
         type: 'DELETE_ITEM', payload: messageid
-
       })
+      toast.success(' Message Deleted');
     }
    
     
@@ -86,6 +78,7 @@ class CustomizedTable extends Component {
 
     })
     return (
+      <div>
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
@@ -102,6 +95,12 @@ class CustomizedTable extends Component {
           </TableBody>
         </Table>
       </Paper>
+      <ToastContainer
+          hideProgressBar={true}
+          autoClose={3000}
+        />
+
+      </div>
     );
   }
 }

@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-
 import ImageUploader from '../ImageUploader/ImageUploader'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import EventDatePicker from '../EventDatePicker/EventDatePicker'
-import Button from '@material-ui/core/Button';
+
 
 
 const styles = theme => ({

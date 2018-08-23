@@ -9,6 +9,8 @@ import EventIcon from '@material-ui/icons/Event';
 import FaceIcon from '@material-ui/icons/Face';
 import SearchIcon from '@material-ui/icons/Search';
 import Power_Settings_NewIcon from '@material-ui/icons/PowerSettingsNew';
+import FolderIcon from '@material-ui/icons/Folder';
+
 
 
 import { Link } from 'react-router-dom';
@@ -46,8 +48,9 @@ class SimpleBottomNavigation extends React.Component {
         className={classes.root}
 
       >
-        <BottomNavigationAction component={Link} to="/info" label="Events/Resources" icon={<EventIcon />} />
+        <BottomNavigationAction component={Link} to="/info" label="Events" icon={<EventIcon />} />
         <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
+        <BottomNavigationAction component={Link} to="/info" label="Resources" icon={<FolderIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="My Profile" icon={<FaceIcon />} />
         <BottomNavigationAction onClick={this.logout} component={Link} to="/home" label="logout" icon={<Power_Settings_NewIcon />} />
 

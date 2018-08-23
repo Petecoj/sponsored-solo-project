@@ -18,6 +18,9 @@ class InfoPage extends Component {
         <h1 style={{ color: 'white', textAlign: 'center', fontSize: '36px' }} >
           RESOURCES
           </h1>
+          <h4 style={{ color: 'white', textAlign: 'center' }}>
+            Here are some other website's that can help you, or someone you know.
+          </h4>
 
      
         <div style={{ color: 'white' }}>

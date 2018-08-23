@@ -7,6 +7,8 @@ import SponsorMessageTable from '../SponsorMessageTable/SponsorMessageTable';
 import ToggleAvailabilitySwitch from '../ToggleAvailabilitySwitch/ToggleAvaiabilitySwitch';
 import EditProfileDialogue from '../EditProfileDialogue/EditProfileDialogue';
 import ImageUploader from '../ImageUploader/ImageUploader'
+import EventPageForm from '../EventPageForm/EventPageForm'
+
 
 
 
@@ -56,7 +58,7 @@ class UserPage extends Component {
           <p>Phone: {this.props.state.currentSponsor.phone}</p>
           <p>City/State: {this.props.state.currentSponsor.city}</p>
           <p>Hobbies/Interests: {this.props.state.currentSponsor.hobbies}</p>
-          <p>Addiction History: {this.props.state.currentSponsor.history}</p>
+          <p >Addiction History: {this.props.state.currentSponsor.history}</p>
           <p>Years Sober: {this.props.state.currentSponsor.years_sober}</p>      
         </div>
       );
@@ -85,7 +87,7 @@ class UserPage extends Component {
         </div>
         { content }
         <SponsorMessageTable messageList={this.props.state.messageList}/>
-        
+        <EventPageForm/>
       </div>
     );
   }

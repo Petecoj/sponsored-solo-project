@@ -176,8 +176,8 @@ router.post('/events', (req, res) => {
     console.log('event body', req.body);
     
     if (req.isAuthenticated) {
-        const queryText = `INSERT INTO "events" ("event","description", "city", "date", "photo") VALUES ($1,$2,$3,$4,$5)`
-        pool.query(queryText, [req.body.event.event, req.body.event.description, req.body.event.city, req.body.event.date, req.body.photo.url,])
+        const queryText = `INSERT INTO "events" ("event", "address", "description", "city", "date", "photo") VALUES ($1, $2, $3, $4, $5, $6)`
+        pool.query(queryText, [req.body.event.event, req.body.event.address, req.body.event.description, req.body.event.city, req.body.event.date, req.body.photo.url,])
             .then(() => {
                 res.sendStatus(200);
             })
@@ -194,7 +194,7 @@ router.put('/photo', (req, res) => {
     console.log('got to put', req.body, req.user);
     if (req.isAuthenticated) {
         const queryText = `UPDATE "sponsor" SET "photo" =  $1 WHERE id = $2`
-        pool.query(queryText, [req.body.url, req.user.id])
+        pool.query(queryText, [req.body.photo.url, req.user.id])
             .then(() => {
                 res.sendStatus(200);
             })

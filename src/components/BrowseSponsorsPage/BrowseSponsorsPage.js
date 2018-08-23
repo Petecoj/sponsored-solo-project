@@ -4,7 +4,8 @@ import NavBar from '../../components/NavBar/NavBar';
 // import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
 import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
-// import SearchCardsFilter from '../SearchCardsFilter/SearchCardsFilter'
+import TextField from '@material-ui/core/TextField';
+
 
 
 
@@ -12,7 +13,7 @@ import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
 //link to the add page
 //get request
 const mapStateToProps = state => ({
-  state
+    state
 });
 const styles = theme => ({
     button: {
@@ -27,62 +28,99 @@ const styles = theme => ({
     iconSmall: {
         fontSize: 20,
     },
+    form: {
+        height: 20
+    }
 });
 
-
+function searchingFor(term){
+    return function (sponsor){
+        return sponsor.city.toLowerCase().includes(term.toLowerCase()) || !term;
+    } 
+}
 class BrowseSponsorsPage extends Component {
     constructor(props) {
         super(props)
-        this.state={
-            selectedCard: [],
-            allSponsors: this.props.state.sponsorList
+        this.state = {
+            allSponsors: this.props.state.sponsorList,
+            term: ''
         }
+        this.searchHandler = this.searchHandler.bind(this);
+ 
     }
+
     componentDidMount() {
         this.props.dispatch({ type: 'GET_CARDS' })
-        
+        this.setState({
+            allSponsors: this.props.state.sponsorList
+        })
+
 
     }
-    componentDidUpdate(){
-        console.log(this.props.state.sponsorList);
+    componentDidUpdate() {
+        console.log(this.props.state.sponsorList)
+        console.log(this.state.allSponsors)
         
+  
     }
 
     handleChange = name => value => {
         this.setState({
-          [name]: value,
+            [name]: value,
         });
-      };
-  
-
-    render() {
+    };
+    searchHandler(event){
+        this.setState({
+           term: event.target.value
+        })
+    }
    
 
-        let sponsorListArray = this.props.state.sponsorList.map((sponsor, index) => {
-            if (sponsor.available === true){
+
+    render() {
+      
+
+        let sponsorListArray = this.props.state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor, index) => {
+            if (sponsor.available === true) {
                 return (<SponsorProfileCard key={index}
-                                       name={sponsor.username} 
-                                       id={sponsor.id}
-                                       sponsor={sponsor}
-                 />)
+                    name={sponsor.username}
+                    id={sponsor.id}
+                    sponsor={sponsor}
+                />)
             }
-    }) 
-    
-    
-    
+        })
+
+        // 
+
+
+
 
         return (
             <div>
-                {/* <SearchCardsFilter/> */}
+
                 <NavBar />
-                 <h2 style={{color:'white', textAlign: 'center', fontSize: '36px'}}>
+                <h2 style={{ color: 'white', textAlign: 'center', fontSize: '24px' }}>
                     BROWSE SPONSORS
                 </h2>
-                <input placeholder="Search..."></input>
-                <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
-                {sponsorListArray}
+                <form style={{height: 60, background: 'rgba(255,255,255,0.5)', borderRadius: 15}}>
+                    <TextField
+                        id="full-width"
+                        label=""
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        placeholder="Search..."
+                        helperText="What city are you looking for?"
+                        width= '50'
+                        margin="normal"
+                        onChange={this.searchHandler}
+                        value={this.state.term}
+                    />
+                </form>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {sponsorListArray}
                 </div>
-                
+
             </div>
         );
     }

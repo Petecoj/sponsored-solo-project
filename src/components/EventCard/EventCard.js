@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   card: {
-    width: 225,
+    width: 300,
+  
     margin: 25,
     background: 'rgba(255,255,255,0.5)',
     color: 'white'
@@ -58,13 +59,14 @@ class SponsorProfileCard extends React.Component {
             image={this.props.event.photo}
           />
           <CardContent>
-            <Typography style={{color:'white', fontSize: 14}} component="p">
+            <Typography style={{fontSize: 14}} component="p">
                 {this.props.event.city}
             </Typography>
-            <Typography style={{color:'white', fontSize: 14}} component="p">
+            <br/>
+            <Typography style={{fontSize: 14}} component="p">
                 {this.props.event.date}
             </Typography>
-            <Typography style={{color:'white', fontSize: 14}} component="p">
+            <Typography style={{fontSize: 14}} component="p">
                 {this.props.event.description}
             </Typography>
           </CardContent>

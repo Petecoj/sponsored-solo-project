@@ -8,6 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux'
 import EditProfileButton from '../EditProfileButton/EditProfileButton'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const mapStateToProps = state => ({
@@ -64,6 +66,7 @@ class FormDialog extends React.Component {
       payload: this.state.sponsor
     })
     this.handleClose();
+    toast.success('Profile Updated!');
   }
 
 
@@ -166,6 +169,10 @@ class FormDialog extends React.Component {
           </DialogActions>
         </Dialog>
         <EditProfileButton handleClickOpen={this.handleClickOpen} />
+        <ToastContainer
+          hideProgressBar={true}
+          autoClose={3000}
+        />
 
       </div>
     );
