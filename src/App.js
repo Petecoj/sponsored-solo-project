@@ -12,7 +12,6 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import SponsorProfilePage from './components/SponsorProfilePage/SponsorProfilePage';
 import InfoPage from './components/InfoPage/InfoPage';
 import InitialPage from './components/InitialPage/InitialPage'
-import CreateSponsorProfilePage from './components/CreateSponsorProfilePage/CreateSponsorProfilePage'
 import './styles/main.css';
 import BrowseSponsorsPage from './components/BrowseSponsorsPage/BrowseSponsorsPage';
 import EventsPage from './components/EventsPage/EventsPage'
@@ -58,10 +57,6 @@ const App = () => (
           path="/browse"
           component={BrowseSponsorsPage}
         />
-         <Route
-          path="/create_profile"
-          component={CreateSponsorProfilePage}
-        />  
         <Route
           path="/events"
           component={EventsPage}

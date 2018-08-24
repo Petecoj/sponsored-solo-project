@@ -13,7 +13,7 @@ class InfoPage extends Component {
 
   render() {
     let content = (
-      <div>
+      <div style={{margin: '50px 250px'}}>
       
         <h1 style={{ color: 'white', textAlign: 'center', fontSize: '36px' }} >
           RESOURCES

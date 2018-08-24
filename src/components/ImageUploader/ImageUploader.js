@@ -48,11 +48,7 @@ class ImageUpload extends React.Component {
             }
         })
         toast.success(' ImageUploaded');
-
-
     }
-
-
 
     render() {
 

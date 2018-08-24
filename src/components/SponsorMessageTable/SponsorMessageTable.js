@@ -20,7 +20,7 @@ const CustomTableCell = withStyles(theme => ({
     background: 'rgba(255,255,255,0.5)'
   },
   body: {
-    fontSize: 10,
+    fontSize: 16,
 
   },
 }))(TableCell);
@@ -65,7 +65,7 @@ class CustomizedTable extends Component {
           this.props.dispatch({
             type: 'DELETE_ITEM', payload: messageid
           })
-          swal("Poof! Your message has been deleted!", {
+          swal("Message has been deleted!", {
             icon: "success",
           });
         } else {
