@@ -3,7 +3,9 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux'
-import axios from 'axios'
+import green from '@material-ui/core/colors/green'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class SwitchLabels extends React.Component {
 
@@ -14,12 +16,18 @@ class SwitchLabels extends React.Component {
 
 
     handleChange = name => event => {
+        if (event.target.checked === true) {
+            toast.success(' Profile will be visible')
+        } else {
+            toast.warn(' Profile will be hidden')
+        }
         this.setState({ available: event.target.checked });
         this.props.dispatch({
             type: 'TOGGLE_AVAILABILITY'
         })
 
     };
+
 
     render() {
         let content;
@@ -32,14 +40,18 @@ class SwitchLabels extends React.Component {
                                 checked={true}
                                 onChange={this.handleChange('available')}
                                 value="checkedA"
-                            />
-                        }
-                        label="Available"
-                    />
+                                color= 'primary'
+                               
+                                      />
+                                  }
+                                  label="Available"
+                              />
                 </FormGroup>
             );
         } else {
+
             content = (
+
                 <FormGroup row>
                     <FormControlLabel
                         control={
@@ -53,10 +65,15 @@ class SwitchLabels extends React.Component {
                     />
                 </FormGroup>
             )
+
         }
         return (
-            <div style={{ borderRadius: 25 ,marginTop: '10px', backgroundColor: 'lightSkyBlue', width: 120, height: 50, margin: 20, padding: 5}}>
+            <div style={{ borderRadius: 25, marginTop: '10px', backgroundColor: 'lightSkyBlue', width: 120, height: 50, margin: 20, padding: 5 }}>
                 {content}
+                <ToastContainer
+                    hideProgressBar={true}
+                    autoClose={3000}
+                />
             </div>
         )
     }

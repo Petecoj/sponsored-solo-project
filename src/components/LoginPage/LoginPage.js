@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-
+import swal from 'sweetalert';
 
 
 const mapStateToProps = state => ({
@@ -39,6 +39,9 @@ class LoginPage extends Component {
 
     if (this.state.username === '' || this.state.password === '') {
       this.props.dispatch(formError());
+      swal({
+        text: "Please fill out your username and password."
+      });
     } else {
       this.props.dispatch(triggerLogin(this.state.username, this.state.password));
       
@@ -51,25 +54,9 @@ class LoginPage extends Component {
     });
   }
 
-  renderAlert() {
- 
-    if (this.props.login.message !== '') {
-      return (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.props.login.message}
-        </h2>
-      );
-    }
-    return (<span />);
-  }
-
   render() {
     return (
       <div>
-        {this.renderAlert()}
         <form style={{ color: 'white' }} onSubmit={this.login}>
           <h1>Login</h1>
           <div>

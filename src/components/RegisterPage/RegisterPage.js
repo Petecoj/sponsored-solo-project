@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert'
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -32,14 +33,18 @@ class RegisterPage extends Component {
           if (response.status === 201) {
             this.props.history.push('/login');
           } else {
-            this.setState({
-              message: 'Ooops! That didn\'t work. The username might already be taken. Try again!',
+            swal({
+              title: "Oh No!",
+              text: "Username is taken!",
+              icon: "error",
             });
           }
         })
         .catch(() => {
-          this.setState({
-            message: 'Ooops! That didn\'t work. The username might already be taken. Try again!?',
+          swal({
+            title: "Oh No!",
+            text: "Username is taken!",
+            icon: "error",
           });
         });
     }

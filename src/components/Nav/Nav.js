@@ -18,7 +18,8 @@ import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
-    background: 'rgba(255,255,255,0.5)'
+    background: 'lightSkyBlue',
+    opacity: 50
   },
 };
 
@@ -27,9 +28,9 @@ class SimpleBottomNavigation extends React.Component {
     value: 0,
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+  // handleChange = (event, value) => {
+  //   this.setState({ value });
+  // };
 
   logout = () => {
     this.props.dispatch(triggerLogout());
@@ -42,13 +43,13 @@ class SimpleBottomNavigation extends React.Component {
 
     return (
       <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
+        // value={value}
+        // onChange={this.handleChange}
         showLabels
         className={classes.root}
 
       >
-        <BottomNavigationAction component={Link} to="/info" label="Events" icon={<EventIcon />} />
+        <BottomNavigationAction component={Link} to="/events" label="Events" icon={<EventIcon />} />
         <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
         <BottomNavigationAction component={Link} to="/info" label="Resources" icon={<FolderIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="My Profile" icon={<FaceIcon />} />

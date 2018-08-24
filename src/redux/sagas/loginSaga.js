@@ -2,6 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { LOGIN_ACTIONS } from '../actions/loginActions';
 import { USER_ACTIONS } from '../actions/userActions';
 import { callLogin, callLogout } from '../requests/loginRequests';
+import swal from 'sweetalert'
 
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
@@ -16,13 +17,21 @@ function* loginUser(action) {
       type: USER_ACTIONS.FETCH_USER,
     });
   } catch (error) {
+   
     yield put({
       type: LOGIN_ACTIONS.LOGIN_REQUEST_DONE,
+      
     });
+   
     if (error.status === 401) {
       yield put({
         type: LOGIN_ACTIONS.LOGIN_FAILED,
         message: error.message,
+      });
+      swal({
+        title: "Oh No!",
+        text: "Username and password don't match",
+        icon: "warning"
       });
     } else {
       yield put({

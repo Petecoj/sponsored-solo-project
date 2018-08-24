@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -52,14 +53,33 @@ class CustomizedTable extends Component {
     if (!this.props.user.isLoading && this.props.user.userName === null) {
       alert('You must be logged in to delete!')
     } else {
-      this.props.dispatch({
-        type: 'DELETE_ITEM', payload: messageid
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this message!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
       })
-      toast.success(' Message Deleted');
+      .then((willDelete) => {
+        if (willDelete) {
+          this.props.dispatch({
+            type: 'DELETE_ITEM', payload: messageid
+          })
+          swal("Poof! Your message has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
+      
+      // toast.success(' Message Deleted');
+   
     }
    
     
   }
+
 
   render() {
     const { classes } = this.props;

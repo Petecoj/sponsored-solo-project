@@ -34,7 +34,13 @@ class ComposedTextField extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-    
+          event: '',
+          address: '',
+          description: '',
+          city: '',
+          date: '',
+
+   
         };
     }
 
@@ -103,7 +109,6 @@ submitEvent = () => {
                 id="date"
                 label="Event Date"
                 type="date"
-                defaultValue="2017-05-24"
                 className={classes.textField}
                 InputLabelProps={{
                     shrink: true,

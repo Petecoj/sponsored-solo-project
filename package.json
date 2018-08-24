@@ -44,10 +44,13 @@
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "testServer": "jest server/test/*.test.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "nodemon": "^1.17.2"
+    "jest": "^23.5.0",
+    "nodemon": "^1.17.2",
+    "supertest": "^3.1.0"
   }
 }

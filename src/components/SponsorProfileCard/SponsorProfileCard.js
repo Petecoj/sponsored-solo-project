@@ -20,6 +20,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const styles = theme => ({
@@ -90,6 +92,8 @@ class SponsorProfileCard extends React.Component {
       payload: this.state.user
     })
     this.handleClose();
+    toast.success(`A text message has been sent to ${this.props.sponsor.username}`);
+
   }
 
   render() {
@@ -112,9 +116,9 @@ class SponsorProfileCard extends React.Component {
            
           />
            <CardHeader
-            subheader={cityState}
+            title={cityState}
+            
           />
-           
           <CardContent>
             <Typography component="p">
            Years Sober: {this.props.sponsor.years_sober}
@@ -203,6 +207,10 @@ class SponsorProfileCard extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
+        <ToastContainer
+          hideProgressBar={true}
+          autoClose={3000}
+        />
       </div>
     );
   }

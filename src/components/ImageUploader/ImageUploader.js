@@ -61,7 +61,7 @@ class ImageUpload extends React.Component {
 
         return (
             <form style={{ float: 'right', height: 50 }}>
-                <label for="fileupload">Select a file to upload</label>
+                <label htmlFor="fileupload">Select a file to upload</label>
                 <Button onClick={() => this.client.picker(this.options).open()} variant="contained" color="default" className={classes.button}>
                     Upload
                 <CloudUploadIcon className={classes.rightIcon} />

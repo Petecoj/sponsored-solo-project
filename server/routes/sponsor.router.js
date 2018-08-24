@@ -62,9 +62,9 @@ router.post('/', (req, res) => {
             .then(() => {
                 client.messages
                     .create({
-                        body: 'you have received a message 4 on "Sponsored"',
+                        body: 'you have received a message on "Sponsored"',
                         from: '+14433398111',
-                        to: `+1${req.body.receiver_phone}`
+                        to: `+15075816573`
                     })
                     .then(message => console.log(message.sid))
                     .done();
