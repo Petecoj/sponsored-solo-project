@@ -87,6 +87,7 @@ class UserPage extends Component {
           <img height="300px" width="auto" src={this.props.state.currentSponsor.photo} />
         </div>
         {content}
+        <h3 style={{ color: 'white', fontSize: 18, textAlign: 'center' }} >Messages</h3>
         <SponsorMessageTable messageList={this.props.state.messageList} />
         </div>
         <EventPageForm />

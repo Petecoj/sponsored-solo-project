@@ -3,9 +3,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux'
-import green from '@material-ui/core/colors/green'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {css} from 'glamor'
+
 
 class SwitchLabels extends React.Component {
 
@@ -73,6 +74,8 @@ class SwitchLabels extends React.Component {
                 <ToastContainer
                     hideProgressBar={true}
                     autoClose={3000}
+                    
+        
                 />
             </div>
         )

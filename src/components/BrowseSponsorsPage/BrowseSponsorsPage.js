@@ -35,7 +35,9 @@ const styles = theme => ({
 
 function searchingFor(term){
     return function (sponsor){
+        if(sponsor.city){
         return sponsor.city.toLowerCase().includes(term.toLowerCase()) || !term;
+        }
     } 
 }
 class BrowseSponsorsPage extends Component {
