@@ -19,7 +19,7 @@ import EventsPage from './components/EventsPage/EventsPage'
 const divStyle = {
   width: '100%',
   height: '100%',
-  backgroundImage: `url(${'https://cdn.filestackcontent.com/loXS3jujTb6ivUCQjbGD'})`,
+  backgroundImage: 'https://res.cloudinary.com/dhdgecggi/image/upload/v1537301310/m5d5yqn2h5ctd5aon2vo.jpg',
   backgroundAttachment: 'fixed',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',

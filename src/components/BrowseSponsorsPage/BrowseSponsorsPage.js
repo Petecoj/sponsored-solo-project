@@ -119,7 +119,7 @@ class BrowseSponsorsPage extends Component {
                         value={this.state.term}
                     />
                 </form>
-                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                     {sponsorListArray}
                 </div>
 

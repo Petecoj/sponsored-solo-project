@@ -194,7 +194,7 @@ router.put('/photo', (req, res) => {
     console.log('got to put', req.body, req.user);
     if (req.isAuthenticated) {
         const queryText = `UPDATE "sponsor" SET "photo" =  $1 WHERE id = $2`
-        pool.query(queryText, [req.body.photo.url, req.user.id])
+        pool.query(queryText, [req.body.photo, req.user.id])
             .then(() => {
                 res.sendStatus(200);
             })
