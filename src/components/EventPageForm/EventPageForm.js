@@ -53,12 +53,12 @@ class ComposedTextField extends React.Component {
         });
   };
 }
-getUploaderInfo = (info)=>{
-    this.setState({
-        photo: info
-    })
+// getUploaderInfo = (info)=>{
+//     this.setState({
+//         photo: info
+//     })
 
-}
+// }
 submitEvent = () => {
     this.props.dispatch({
       type: 'NEW_EVENT',
@@ -73,7 +73,7 @@ submitEvent = () => {
     return (
       <div>
       <h2 style={{color:'white', textAlign: 'center', fontSize: '24px'}}>
-      Add an Event!
+      Post an Event!
       </h2>
       <div  style={{  backgroundColor: 'rgba(255,255,255,0.5)', margin: '50px', padding: '10px', borderRadius: '15px'}} className={classes.container}>
         <FormControl className={classes.formControl}>

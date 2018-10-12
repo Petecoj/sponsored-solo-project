@@ -36,15 +36,15 @@ const eventList = (state = [], action) => {
       return state
   }
 }
-const newEvent = (state = [], action) => {
-  switch (action.type) {
-    case 'NEW_EVENT':
-      return {...state,
-         url: action.payload}
-    default:
-      return state
-  }
-}
+// const newEvent = (state = [], action) => {
+//   switch (action.type) {
+//     case 'NEW_EVENT':
+//       return {...state,
+//          url: action.payload}
+//     default:
+//       return state
+//   }
+// }
 
 
 
@@ -55,7 +55,7 @@ const store = combineReducers({
   messageList,
   currentSponsor,
   eventList,
-  newEvent
+  // newEvent
 
 });
 

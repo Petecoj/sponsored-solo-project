@@ -177,7 +177,7 @@ router.post('/events', (req, res) => {
     
     if (req.isAuthenticated) {
         const queryText = `INSERT INTO "events" ("event", "address", "description", "city", "date", "photo") VALUES ($1, $2, $3, $4, $5, $6)`
-        pool.query(queryText, [req.body.event.event, req.body.event.address, req.body.event.description, req.body.event.city, req.body.event.date, req.body.photo.url,])
+        pool.query(queryText, [req.body.event.event, req.body.event.address, req.body.event.description, req.body.event.city, req.body.event.date, req.body.photo,])
             .then(() => {
                 res.sendStatus(200);
             })

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import AddIcon from '@material-ui/icons/Add'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,7 +30,11 @@ const styles = theme => ({
 class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { file: '', imagePreviewUrl: '' };
+        this.state = {
+            file: '',
+            imagePreviewUrl: '',
+            photo: ''
+        };
         // this.apiKey = 'AEI4el0aFQVy89sthpcBdz'
         // this.client = filestack.init(this.apiKey);
         // this.options = {
@@ -71,9 +76,10 @@ class ImageUpload extends React.Component {
     // }
     openCloudinary = () => {
         window.cloudinary.openUploadWidget(this.config, (error, result) => {
-            if (result) {
+            console.log(result);
+            
+            if (result.event === "success") {
                 let cloudinaryUrl = result.info.secure_url || 'https://res.cloudinary.com/dftsayunq/image/upload/v1536937033/Crowdrise_default.png';
-                console.log(cloudinaryUrl)
                 this.props.dispatch({
                     type: this.props.type,
                     payload: {
@@ -81,10 +87,14 @@ class ImageUpload extends React.Component {
                         event: this.props.newEvent
                     }
                 })
-
             }
+
         })
     }
+    addPhoto = () => {
+      
+    }
+
 
     render() {
 
@@ -92,17 +102,16 @@ class ImageUpload extends React.Component {
 
 
         return (
-            <form style={{ float: 'right', height: 50 }}>
-                <label htmlFor="fileupload">Select a file to upload</label>
+            <div>
+                <form style={{ float: 'right', height: 50 }}>
+                <label htmlFor="fileupload">Select a photo to upload</label>
                 <Button onClick={() => this.openCloudinary()} variant="contained" color="default" className={classes.button}>
-                    Upload
+                        Upload
                 <CloudUploadIcon className={classes.rightIcon} />
-                </Button>
-                <ToastContainer
-                    hideProgressBar={true}
-                    autoClose={3000}
-                />
-            </form>
+                    </Button>
+                </form>
+                
+            </div>
         )
     }
 }
