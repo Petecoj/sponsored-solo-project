@@ -32,24 +32,10 @@ class ImageUpload extends React.Component {
             imagePreviewUrl: '',
             photo: ''
         };
-        // this.apiKey = 'AEI4el0aFQVy89sthpcBdz'
-        // this.client = filestack.init(this.apiKey);
-        // this.options = {
-        //     uploadInBackground: false,
-        //     onUploadDone: this.showFileData
-        // };
+        
     }
 
-    // showFileData = (response) => {
-    //     this.props.dispatch({
-    //         type: this.props.type,
-    //         payload: {
-    //             photo: response.filesUploaded[0],
-    //             event: this.props.newEvent
-    //         }
-    //     })
-    //     toast.success(' ImageUploaded');
-    // }
+ 
     componentDidMount() {
         this.config = {
             cloud_name: "dftsayunq",
@@ -58,19 +44,8 @@ class ImageUpload extends React.Component {
             upload_preset: 'k5z6zjgb'
         }
     }
-    //   openCloudinary = () => {
-    //     window.cloudinary.openUploadWidget(this.config, (error, result) => {
-    //         if (result) {
-    //             let cloudinaryUrl = result.info.secure_url || 'https://res.cloudinary.com/dhdgecggi/image/upload/v1536937033/Crowdrise_default.png';
-    //             this.setState({
-    //                 // store url to local state BEFORE disptaching an action
-    //                 ...this.state,
-    //                 upload_image: cloudinaryUrl
-    //             })
-    //         }
-    //     })
-
-    // }
+  
+   
     openCloudinary = () => {
         window.cloudinary.openUploadWidget(this.config, (error, result) => {
             console.log(result);
