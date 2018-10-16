@@ -7,6 +7,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios'
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
@@ -41,6 +44,19 @@ class SponsorProfileCard extends React.Component {
   this.state = { expanded: false, open: false, user: {} };
 
   }
+  deleteEvent = (id) => {
+    console.log(id);
+    axios.delete(`/api/sponsor/events/${id}`)
+    .then((results) => {
+      this.props.dispatch({
+        type: 'GET_EVENTS'
+      })
+    }).catch((error)=>{
+      console.log(error);
+      
+    })
+  
+  }
 
   render() {
     const { classes } = this.props;
@@ -70,6 +86,9 @@ class SponsorProfileCard extends React.Component {
                 {this.props.event.description}
             </Typography>
           </CardContent>
+          <IconButton onClick={()=> this.deleteEvent(this.props.event.id)}className={classes.button} aria-label="Delete">
+        <DeleteIcon />
+      </IconButton>
 
         </Card>
       

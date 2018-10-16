@@ -137,7 +137,22 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(403);
     }
 });
+router.delete('/events/:id', (req, res) => {
+    console.log('in DEELETE')
+    console.log(req.body);
 
+    if (req.isAuthenticated) {
+        const queryText = `DELETE FROM "events" WHERE id=$1`;
+        pool.query(queryText, [req.params.id])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting', err);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
 
 
 
