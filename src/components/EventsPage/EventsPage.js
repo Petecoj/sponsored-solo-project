@@ -9,15 +9,12 @@ const mapStateToProps = state => ({
 
 class InfoPage extends Component {
 
-
   render() {
 
     return (
       <div>
         <NavBar />
-        
         <EventListPage/>
-       
       </div>
     );
   }

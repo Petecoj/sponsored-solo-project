@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -24,7 +24,7 @@ class BrowsePageSearchSelector extends React.Component {
     open: false,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -70,8 +70,8 @@ class BrowsePageSearchSelector extends React.Component {
   }
 }
 
-ControlledOpenSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// ControlledOpenSelect.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(BrowsePageSearchSelector);

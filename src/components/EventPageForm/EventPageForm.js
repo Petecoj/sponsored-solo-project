@@ -9,24 +9,18 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
 
-
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   formControl: {
     margin: theme.spacing.unit,
     width: '200px',
-    
   },
   button: {
     margin: theme.spacing.unit,
     position: 'left'
-  },
-  input: {
-    // display: 'none',
   },
 });
 

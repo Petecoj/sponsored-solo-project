@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NavBar from '../../components/NavBar/NavBar';
-// import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
-import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
 import TextField from '@material-ui/core/TextField';
+import NavBar from '../NavBar/NavBar';
+// import { USER_ACTIONS } from '../../redux/actions/userActions';
+import SponsorProfileCard from '../SponsorProfileCard/SponsorProfileCard';
 
 
-
-
-//views
-//link to the add page
-//get request
+// views
+// link to the add page
+// get request
 const mapStateToProps = state => ({
-    state
+    state,
 });
 const styles = theme => ({
-    button: {
-        margin: theme.spacing.unit,
+  button: {
+    margin: theme.spacing.unit,
     },
     leftIcon: {
         marginRight: theme.spacing.unit,
@@ -29,101 +27,90 @@ const styles = theme => ({
         fontSize: 20,
     },
     form: {
-        height: 20
-    }
+        height: 20,
+    },
 });
 
-function searchingFor(term){
-    return function (sponsor){
-        if(sponsor.city){
+function searchingFor(term) {
+    return function (sponsor) {
+        if (sponsor.city) {
         return sponsor.city.toLowerCase().includes(term.toLowerCase()) || !term;
         }
-    } 
+    };
 }
 class BrowseSponsorsPage extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        const { state } = this.props;
         this.state = {
-            allSponsors: this.props.state.sponsorList,
-            term: ''
-        }
+            allSponsors: state.sponsorList,
+            term: '',
+        };
         this.searchHandler = this.searchHandler.bind(this);
- 
     }
 
     componentDidMount() {
-        this.props.dispatch({ type: 'GET_CARDS' })
+      const { dispatch, state } = this.props;
+        dispatch({ type: 'GET_CARDS' });
+
         this.setState({
-            allSponsors: this.props.state.sponsorList
-        })
-
-
-    }
-    componentDidUpdate() {
-        console.log(this.props.state.sponsorList)
-        console.log(this.state.allSponsors)
-        
-  
+            allSponsors: state.sponsorList,
+        });
     }
 
-    handleChange = name => value => {
+    handleChange = name => (value) => {
         this.setState({
             [name]: value,
         });
     };
-    searchHandler(event){
+
+    searchHandler(event) {
         this.setState({
-           term: event.target.value
-        })
+           term: event.target.value,
+        });
     }
-   
 
 
     render() {
-      
-
-        let sponsorListArray = this.props.state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor, index) => {
+         const sponsorListArray = this.props.state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor) => {
             if (sponsor.available === true) {
-                return (<SponsorProfileCard key={index}
+                return (
+                  <SponsorProfileCard
+                    key={sponsor.id}
                     name={sponsor.username}
                     id={sponsor.id}
                     sponsor={sponsor}
-                />)
+                  />);
             }
-        })
-
-        // 
-
-
+        });
 
 
         return (
-            <div>
-
-                <NavBar />
-                <h2 style={{ color: 'white', textAlign: 'center', fontSize: '24px' }}>
-                    BROWSE SPONSORS
-                </h2>
-                <form style={{height: 60, background: 'rgba(255,255,255,0.5)', borderRadius: 15}}>
-                    <TextField
-                        id="full-width"
-                        label=""
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        placeholder="Search..."
-                        helperText="What city are you looking for?"
-                        width= '50'
-                        margin="normal"
-                        onChange={this.searchHandler}
-                        value={this.state.term}
-                    />
-                </form>
-                <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                    {sponsorListArray}
-                </div>
-
+          <div>
+            <NavBar />
+            <h2 style={{ color: 'white', textAlign: 'center', fontSize: '24px' }}>
+              BROWSE SPONSORS
+            </h2>
+            <form style={{ height: 60, background: 'rgba(255,255,255,0.5)', borderRadius: 15}}>
+              <TextField
+                id="full-width"
+                label=""
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                placeholder="Search..."
+                helperText="What city are you looking for?"
+                width="50"
+                margin="normal"
+                onChange={this.searchHandler}
+                value={this.state.term}
+              />
+            </form>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+              {sponsorListArray}
             </div>
+
+          </div>
         );
     }
 }

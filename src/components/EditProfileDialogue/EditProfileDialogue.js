@@ -69,8 +69,6 @@ class FormDialog extends React.Component {
     toast.success('Profile Updated!');
   }
 
-
-
   componentWillReceiveProps = nextProps => {
     console.log(nextProps.state.currentSponsor);
     this.setState({
@@ -79,9 +77,6 @@ class FormDialog extends React.Component {
     
 
   }
-
-
-
 
   render() {
     console.log(this.state.sponsor);
