@@ -72,6 +72,7 @@ class BrowseSponsorsPage extends Component {
 
 
     render() {
+        const { state } = this.props;
          const sponsorListArray = this.props.state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor) => {
             if (sponsor.available === true) {
                 return (

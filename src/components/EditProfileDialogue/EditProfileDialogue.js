@@ -6,23 +6,21 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { connect } from 'react-redux'
-import EditProfileButton from '../EditProfileButton/EditProfileButton'
+import { connect } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
+import EditProfileButton from '../EditProfileButton/EditProfileButton';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const mapStateToProps = state => ({
   user: state.user,
-  state
+  state,
 });
 
 
 class FormDialog extends React.Component {
   constructor(props) {
-    super(props)
-
-
+    super(props);
 
     this.state = {
       open: false,
@@ -33,11 +31,11 @@ class FormDialog extends React.Component {
         state: '',
         hobbies: '',
         history: '',
-        years_sober: ''
-      
-      }
-    }
+        years_sober: '',
+      },
+    };
   }
+
   handleChangeFor = (propertyName) => {
     return (event) => {
       this.setState({
@@ -46,9 +44,9 @@ class FormDialog extends React.Component {
           [propertyName]: event.target.value,
           id: this.props.id
 
-        }
-      })
-    }
+        },
+      });
+    };
   }
 
 
@@ -64,27 +62,23 @@ class FormDialog extends React.Component {
     this.props.dispatch({
       type: 'UPDATE_PROFILE',
       payload: this.state.sponsor
-    })
+    });
     this.handleClose();
     toast.success('Profile Updated!');
   }
 
-  componentWillReceiveProps = nextProps => {
+  componentWillReceiveProps = (nextProps) => {
     console.log(nextProps.state.currentSponsor);
     this.setState({
-      sponsor: {...nextProps.state.currentSponsor}
-    })
-    
-
+      sponsor: { ...nextProps.state.currentSponsor },
+    });
   }
 
   render() {
     console.log(this.state.sponsor);
-    
-
 
     return (
-      <div >
+      <div>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -100,7 +94,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="Email"
               fullWidth
-              onChange={this.handleChangeFor("email")}
+              onChange={this.handleChangeFor('email')}
               value={this.state.sponsor.email}
 
             />
@@ -109,7 +103,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="Phone"
               fullWidth
-              onChange={this.handleChangeFor("phone")}
+              onChange={this.handleChangeFor('phone')}
               defaultValue={this.state.sponsor.phone}
             />
             <TextField
@@ -118,7 +112,7 @@ class FormDialog extends React.Component {
               label="City"
               fullWidth
               defaultValue={this.state.sponsor.city}
-              onChange={this.handleChangeFor("city")}
+              onChange={this.handleChangeFor('city')}
             />
             <TextField
               autoFocus
@@ -126,7 +120,7 @@ class FormDialog extends React.Component {
               label="State"
               fullWidth
               defaultValue={this.state.sponsor.state}
-              onChange={this.handleChangeFor("state")}
+              onChange={this.handleChangeFor('state')}
             />
             <TextField
               autoFocus
@@ -134,7 +128,7 @@ class FormDialog extends React.Component {
               label="Hobbies/Interests"
               fullWidth
               defaultValue={this.state.sponsor.hobbies}
-              onChange={this.handleChangeFor("hobbies")}
+              onChange={this.handleChangeFor('hobbies')}
             />
             <TextField
               autoFocus
@@ -142,7 +136,7 @@ class FormDialog extends React.Component {
               label="Addiction History"
               fullWidth
               defaultValue={this.state.sponsor.history}
-              onChange={this.handleChangeFor("history")}
+              onChange={this.handleChangeFor('history')}
             />
             <TextField
               autoFocus
@@ -150,7 +144,7 @@ class FormDialog extends React.Component {
               label="Years Sober"
               fullWidth
               defaultValue={this.state.sponsor.years_sober}
-              onChange={this.handleChangeFor("years_sober")}
+              onChange={this.handleChangeFor('years_sober')}
 
             />
           </DialogContent>
@@ -168,12 +162,9 @@ class FormDialog extends React.Component {
           hideProgressBar={true}
           autoClose={3000}
         />
-
       </div>
     );
   }
 }
-
-
 
 export default connect(mapStateToProps)(FormDialog);

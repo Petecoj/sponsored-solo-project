@@ -70,8 +70,4 @@ class BrowsePageSearchSelector extends React.Component {
   }
 }
 
-// ControlledOpenSelect.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
 export default withStyles(styles)(BrowsePageSearchSelector);

@@ -9,8 +9,6 @@ const styles = theme => ({
     },
 });
 
-
-
 class ContainedButtons extends Component {
 
 handleProfileSubmit = () => {
