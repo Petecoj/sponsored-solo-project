@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { triggerLogout } from '../../redux/actions/loginActions';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -10,16 +9,14 @@ import FaceIcon from '@material-ui/icons/Face';
 import SearchIcon from '@material-ui/icons/Search';
 import Power_Settings_NewIcon from '@material-ui/icons/PowerSettingsNew';
 import FolderIcon from '@material-ui/icons/Folder';
-
-
-
 import { Link } from 'react-router-dom';
+import { triggerLogout } from '../../redux/actions/loginActions';
 
 
 const styles = {
   root: {
     background: 'lightSkyBlue',
-    opacity: 50
+    opacity: 50,
   },
 };
 
@@ -54,14 +51,9 @@ class SimpleBottomNavigation extends React.Component {
         <BottomNavigationAction component={Link} to="/info" label="Resources" icon={<FolderIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="My Profile" icon={<FaceIcon />} />
         <BottomNavigationAction onClick={this.logout} component={Link} to="/home" label="logout" icon={<Power_Settings_NewIcon />} />
-
       </BottomNavigation>
     );
   }
 }
-
-SimpleBottomNavigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default connect()(withStyles(styles)(SimpleBottomNavigation));

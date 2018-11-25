@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -34,17 +34,17 @@ class RegisterPage extends Component {
             this.props.history.push('/login');
           } else {
             swal({
-              title: "Oh No!",
-              text: "Username is taken!",
-              icon: "error",
+              title: 'Oh No!',
+              text: 'Username is taken!',
+              icon: 'error',
             });
           }
         })
         .catch(() => {
           swal({
-            title: "Oh No!",
-            text: "Username is taken!",
-            icon: "error",
+            title: 'Oh No!',
+            text: 'Username is taken!',
+            icon: 'error',
           });
         });
     }
@@ -74,7 +74,7 @@ class RegisterPage extends Component {
     return (
       <div>
         {this.renderAlert()}
-        <form  style={{ color:'white'}} onSubmit={this.registerUser}>
+        <form style={{ color: 'white' }} onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
             <label htmlFor="username">
@@ -107,13 +107,10 @@ class RegisterPage extends Component {
             <Link to="/home">Cancel</Link>
           </div>
         </form>
-        <div className="space" >
-
-        </div>
+        <div className="space" />
       </div>
     );
   }
 }
 
 export default RegisterPage;
-

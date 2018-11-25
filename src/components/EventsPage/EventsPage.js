@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EventListPage from '../EventListPage/EventListPage'
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
+import EventListPage from '../EventListPage/EventListPage';
 
 const mapStateToProps = state => ({
   user: state.user,
 });
 
 class InfoPage extends Component {
-
   render() {
-
     return (
       <div>
         <NavBar />
-        <EventListPage/>
+        <EventListPage />
       </div>
     );
   }
 }
 
-// this allows us to use <App /> in index.js
+
 export default connect(mapStateToProps)(InfoPage);

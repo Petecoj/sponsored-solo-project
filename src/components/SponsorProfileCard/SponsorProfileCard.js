@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
@@ -29,7 +28,7 @@ const styles = theme => ({
     width: 225,
     // maxWidth: 200,
     margin: 25,
-    background: 'rgba(255,255,255,0.5)'
+    background: 'rgba(255,255,255,0.5)',
   },
   media: {
     paddingTop: '86.25%', // 16:9
@@ -42,17 +41,17 @@ const styles = theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
-  Typography:{
-  htmlFontSize: 30
+  Typography: {
+  htmlFontSize: 30,
   },
 });
 
 class SponsorProfileCard extends React.Component {
-  constructor(props){
-    super(props)
-  this.state = { expanded: false, open: false, user: {receiver:this.props.reciever_phone} };
+  constructor(props) {
+    super(props);
+  this.state = { expanded: false, open: false, user: { receiver:this.props.reciever_phone } };
   }
 
   handleExpandClick = () => {
@@ -66,58 +65,49 @@ class SponsorProfileCard extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
   handleChangeFor = (propertyName) => {    
-    return (event ) => {
-     
-      
+    return (event) => {
       this.setState({
        user: {
           ...this.state.user,
           [propertyName] : event.target.value,
           id: this.props.id,
           receiver_phone:this.props.sponsor.phone
-          
-        }
-      })
+        },
+      });
       console.log(this.state.user.receiver_phone);
-
-
-    }
+    };
   }
+
   sendMessage = () => {
     console.log(this.state);
-    
     this.props.dispatch({
       type: 'SEND_MESSAGE',
-      payload: this.state.user
-    })
+      payload: this.state.user,
+    });
     this.handleClose();
     toast.success(`A text message has been sent to ${this.props.sponsor.username}`);
 
   }
 
   render() {
-
-
     const { classes } = this.props;
-    
-    let cityState = `${this.props.sponsor.city}, ${this.props.sponsor.state}` 
+    const cityState = `${this.props.sponsor.city}, ${this.props.sponsor.state}`;
 
     return (
       <div>
         <Card className={classes.card}>
-        <CardHeader
+          <CardHeader
             title={this.props.name}
-     
           />
           <CardMedia
             className={classes.media}
             image={this.props.sponsor.photo}
-           
+
           />
-           <CardHeader
+          <CardHeader
             title={cityState}
-            
           />
           <CardContent>
             <Typography component="p">
@@ -125,8 +115,10 @@ class SponsorProfileCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="message"
-                        onClick={this.handleClickOpen}>
+            <IconButton
+              aria-label="message"
+              onClick={this.handleClickOpen}
+            >
               <TextsmsIcon />
             </IconButton>
             Message
@@ -137,9 +129,9 @@ class SponsorProfileCard extends React.Component {
               onClick={this.handleExpandClick}
               aria-expanded={this.state.expanded}
               aria-label="Bio"
-            > Info
+            >
+             Info
               <ExpandMoreIcon />
-              
             </IconButton>
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
@@ -152,9 +144,7 @@ class SponsorProfileCard extends React.Component {
               <Typography paragraph>
                {this.props.sponsor.history}
               </Typography>
-              <Typography>
-      
-              </Typography>
+              <Typography />
             </CardContent>
           </Collapse>
         </Card>
@@ -163,7 +153,9 @@ class SponsorProfileCard extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Message to {this.props.name}</DialogTitle>
+          <DialogTitle id="form-dialog-title">
+            Message to {this.props.name}
+          </DialogTitle>
           <DialogContent>
             <DialogContentText>
               To send a message, please enter your email address or phone number here. Then write a brief message introducing yourself. 
@@ -174,28 +166,28 @@ class SponsorProfileCard extends React.Component {
               margin="dense"
               label="First Name"
               fullWidth
-              onChange={this.handleChangeFor("sender")}
+              onChange={this.handleChangeFor('sender')}
             />
             <TextField
               autoFocus
               margin="dense"
               label="Phone"
               fullWidth
-              onChange={this.handleChangeFor("phone")}
+              onChange={this.handleChangeFor('phone')}
             />
             <TextField
               autoFocus
               margin="dense"
               label="Email Address"
               fullWidth
-              onChange={this.handleChangeFor("email")}
+              onChange={this.handleChangeFor('email')}
             />
-             <TextField
+            <TextField
               autoFocus
               margin="dense"
               label="Message"
               fullWidth
-              onChange={this.handleChangeFor("message")}
+              onChange={this.handleChangeFor('message')}
             />
           </DialogContent>
           <DialogActions>
@@ -216,12 +208,9 @@ class SponsorProfileCard extends React.Component {
   }
 }
 
-SponsorProfileCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 const mapStateToProps = state => ({
   user: state.user,
-  state
+  state,
 });
-const styledSponsorProfileCard = withStyles(styles)(SponsorProfileCard)
+const styledSponsorProfileCard = withStyles(styles)(SponsorProfileCard);
 export default connect(mapStateToProps)(styledSponsorProfileCard);

@@ -1,8 +1,8 @@
 
-import React, {Component} from 'react'
-import SearchInput, {createFilter} from 'react-search-input'
+import React, {Component} from 'react';
+import SearchInput, {createFilter} from 'react-search-input';
  
-import emails from './mails'
+import emails from './mails';
  
 const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name']
  

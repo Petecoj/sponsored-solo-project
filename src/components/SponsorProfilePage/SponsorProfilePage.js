@@ -6,31 +6,26 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 import SponsorMessageTable from '../SponsorMessageTable/SponsorMessageTable';
 import ToggleAvailabilitySwitch from '../ToggleAvailabilitySwitch/ToggleAvaiabilitySwitch';
 import EditProfileDialogue from '../EditProfileDialogue/EditProfileDialogue';
-import ImageUploader from '../ImageUploader/ImageUploader'
-import EventPageForm from '../EventPageForm/EventPageForm'
-
-
+import ImageUploader from '../ImageUploader/ImageUploader';
+import EventPageForm from '../EventPageForm/EventPageForm';
 
 
 const mapStateToProps = state => ({
   user: state.user,
-  state
+  state,
 });
 
 class UserPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
-    }
-
+    };
   }
 
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-    this.props.dispatch({ type: 'GET_MESSAGES' })
-    this.props.dispatch({ type: 'GET_USER_INFO' })
+    this.props.dispatch({ type: 'GET_MESSAGES' });
+    this.props.dispatch({ type: 'GET_USER_INFO' });
 
   }
 
@@ -42,14 +37,12 @@ class UserPage extends Component {
 
   logout = () => {
     this.props.dispatch(triggerLogout());
-    // this.props.history.push('home');
   }
 
   profile;
 
   render() {
-
-    let content
+    let content;
     if (this.props.user.userName) {
       content = (
         <div style={{ color: 'white', marginLeft: 50, fontSize: 18 }} className="sponsorPage">

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -14,32 +13,23 @@ import { Link } from 'react-router-dom';
 const styles = {
   root: {
     background: 'lightSkyBlue',
-    
+
   },
 };
 
 class SimpleBottomNavigation extends React.Component {
-  state = {
-    value: 0,
-  };
-
-
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
+
 
     return (
       <BottomNavigation
         showLabels
         className={classes.root}
-   
-       
-       
-
       >
         <BottomNavigationAction component={Link} to="/register" label="Register" icon={<HowToRegIcon />} />
         <BottomNavigationAction component={Link} to="/login" label="Sponsor Login" icon={<PersonIcon />} />
-        <BottomNavigationAction component={Link} to="/events" label="Events" icon={<EventIcon />}/>
+        <BottomNavigationAction component={Link} to="/events" label="Events" icon={<EventIcon />} />
         <BottomNavigationAction component={Link} to="/browse" label="Browse/Search Sponsors" icon={<SearchIcon />} />
         <BottomNavigationAction component={Link} to="/info" label="Resources" icon={<FolderIcon />} />
 
@@ -48,8 +38,5 @@ class SimpleBottomNavigation extends React.Component {
   }
 }
 
-SimpleBottomNavigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(SimpleBottomNavigation);

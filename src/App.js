@@ -11,15 +11,15 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import SponsorProfilePage from './components/SponsorProfilePage/SponsorProfilePage';
 import InfoPage from './components/InfoPage/InfoPage';
-import InitialPage from './components/InitialPage/InitialPage'
+import InitialPage from './components/InitialPage/InitialPage';
 import './styles/main.css';
 import BrowseSponsorsPage from './components/BrowseSponsorsPage/BrowseSponsorsPage';
-import EventsPage from './components/EventsPage/EventsPage'
+import EventsPage from './components/EventsPage/EventsPage';
 
 const divStyle = {
   width: '100%',
   height: '100%',
-  backgroundImage: "url(https://res.cloudinary.com/dftsayunq/image/upload/v1539363749/IMG_2054_ioryug.jpg)",
+  backgroundImage: 'url(https://res.cloudinary.com/dftsayunq/image/upload/v1539363749/IMG_2054_ioryug.jpg)',
   backgroundAttachment: 'fixed',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
@@ -53,7 +53,7 @@ const App = () => (
           path="/info"
           component={InfoPage}
         />
-          <Route
+        <Route
           path="/browse"
           component={BrowseSponsorsPage}
         />
