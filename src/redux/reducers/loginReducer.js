@@ -6,11 +6,11 @@ const message = (state = '', action) => {
     case LOGIN_ACTIONS.CLEAR_LOGIN_ERROR:
       return '';
     case LOGIN_ACTIONS.LOGIN_FAILED:
-      return state
-      //'Ooops! The username and password didn\'t match. Try again!';
+      return state;
+      //  'Ooops! The username and password didn\'t match. Try again!';
     case LOGIN_ACTIONS.LOGIN_FAILED_NO_CODE:
-      return state
-      //'Ooops! Something went wrong! Is the server running?';
+      return state;
+      //  'Ooops! Something went wrong! Is the server running?';
     case LOGIN_ACTIONS.INPUT_ERROR:
       return action.payload;
     default:

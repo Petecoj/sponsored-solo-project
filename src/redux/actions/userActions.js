@@ -7,5 +7,3 @@ export const USER_ACTIONS = {
   LOGOUT: 'LOGOUT',
   USER_FETCH_FAILED: 'USER_FETCH_FAILED',
 };
-
-

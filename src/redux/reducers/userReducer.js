@@ -37,5 +37,5 @@ const isLoading = (state = false, action) => {
 export default combineReducers({
   id,
   userName,
-  isLoading
+  isLoading,
 });

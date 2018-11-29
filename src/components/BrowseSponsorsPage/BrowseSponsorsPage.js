@@ -52,7 +52,6 @@ class BrowseSponsorsPage extends Component {
     componentDidMount() {
       const { dispatch, state } = this.props;
         dispatch({ type: 'GET_CARDS' });
-
         this.setState({
             allSponsors: state.sponsorList,
         });
@@ -73,7 +72,7 @@ class BrowseSponsorsPage extends Component {
 
     render() {
         const { state } = this.props;
-         const sponsorListArray = this.props.state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor) => {
+         const sponsorListArray = state.sponsorList.filter(searchingFor(this.state.term)).map((sponsor) => {
             if (sponsor.available === true) {
                 return (
                   <SponsorProfileCard

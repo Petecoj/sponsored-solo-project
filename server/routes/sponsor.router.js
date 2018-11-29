@@ -1,21 +1,20 @@
 const express = require('express');
-const pool = require('../modules/pool');
+
 const router = express.Router();
 const accountSid = 'AC48c2b3e3b33f6bb88817fbaa8b915318';
 const authToken = 'c1dfd2e3a144ea93249a230e44b267dc';
 const client = require('twilio')(accountSid, authToken);
-
+const pool = require('../modules/pool');
 
 /**
  * GET route template
  */
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM sponsor;`;
+    const queryText = `SELECT * FROM sponsor;`
     pool.query(queryText)
         .then((results) => {
-            res.send(results.rows)
+            res.send(results.rows);
             console.log(results.rows);
-
         }).catch((err) => {
             console.log(err);
             res.sendStatus(500);
@@ -27,7 +26,7 @@ router.get('/messages', (req, res) => {
         console.log('GET route');
         console.log('is authenticated?', req.isAuthenticated());
         console.log('user', req.user);
-        let queryText = `SELECT sponsor.available,
+        const queryText = `SELECT sponsor.available,
                             sponsor.id,
                             "user".id as messageid,
                             "user".email,
@@ -54,9 +53,8 @@ router.get('/messages', (req, res) => {
 router.post('/', (req, res) => {
     console.log('got to post', req.body);
     console.log(req.body.receiver_phone);
-    
+
     if (req.isAuthenticated) {
-        
         const queryText = `INSERT INTO "user" ("email","phone", "message", "sender", "received_by") VALUES ($1,$2,$3,$4,$5)`
         pool.query(queryText, [req.body.email, req.body.phone, req.body.message, req.body.sender, req.body.id])
             .then(() => {
@@ -64,7 +62,7 @@ router.post('/', (req, res) => {
                     .create({
                         body: 'you have received a message on "Sponsored"',
                         from: '+14433398111',
-                        to: `+15075816573`
+                        to: '+15075816573',
                     })
                     .then(message => console.log(message.sid))
                     .done();
@@ -72,13 +70,13 @@ router.post('/', (req, res) => {
             })
             .catch((error) => {
                 console.log(error);
-                res.sendStatus(500)
-            })
+                res.sendStatus(500);
+            });
     } else {
         res.sendStatus(403);
     }
-
 });
+
 router.put('/', (req, res) => {
     console.log('got to put', req.body, req.user);
     if (req.isAuthenticated) {
@@ -89,12 +87,11 @@ router.put('/', (req, res) => {
             })
             .catch((error) => {
                 console.log(error);
-                res.sendStatus(500)
+                res.sendStatus(500);
             })
     } else {
         res.sendStatus(403);
     }
-
 });
 router.put('/update', (req, res) => {
     console.log('got to put', req.body, req.user.id);
@@ -107,14 +104,14 @@ router.put('/update', (req, res) => {
                                 "hobbies" = $5,
                                 "history" = $6,
                                 "years_sober" = $7
-                                WHERE id = $8`
+                                WHERE id = $8`;
         pool.query(queryText, [req.body.email, req.body.phone, req.body.city, req.body.state, req.body.hobbies, req.body.history, req.body.years_sober, req.user.id])
             .then(() => {
                 res.sendStatus(200);
             })
             .catch((error) => {
                 console.log(error);
-                res.sendStatus(500)
+                res.sendStatus(500);
             })
     } else {
         res.sendStatus(403);
@@ -122,7 +119,7 @@ router.put('/update', (req, res) => {
 
 });
 router.delete('/:id', (req, res) => {
-    console.log('in DEELETE')
+    console.log('in DEELETE');
     console.log(req.body);
 
     if (req.isAuthenticated) {
@@ -138,7 +135,7 @@ router.delete('/:id', (req, res) => {
     }
 });
 router.delete('/events/:id', (req, res) => {
-    console.log('in DEELETE')
+    console.log('in DEELETE');
     console.log(req.body);
 
     if (req.isAuthenticated) {
@@ -161,15 +158,14 @@ router.get('/available', (req, res) => {
         const queryText = `SELECT * FROM sponsor WHERE id =$1;`;
         pool.query(queryText, [req.user.id])
             .then((results) => {
-                res.send(results.rows)
+                res.send(results.rows);
                 console.log(results.rows);
-
             }).catch((err) => {
                 console.log(err);
                 res.sendStatus(500);
-            })
+            });
     } else {
-        res.sendStatus(403)
+        res.sendStatus(403);
     }
 });
 
@@ -178,18 +174,18 @@ router.get('/events', (req, res) => {
     const queryText = `SELECT * FROM events;`;
     pool.query(queryText)
         .then((results) => {
-            res.send(results.rows)
+            res.send(results.rows);
             console.log(results.rows);
         }).catch((err) => {
             console.log(err);
             res.sendStatus(500);
-        })
+        });
 
 });
 router.post('/events', (req, res) => {
     console.log('got to post', req.body);
     console.log('event body', req.body);
-    
+
     if (req.isAuthenticated) {
         const queryText = `INSERT INTO "events" ("event", "address", "description", "city", "date", "photo") VALUES ($1, $2, $3, $4, $5, $6)`
         pool.query(queryText, [req.body.event.event, req.body.event.address, req.body.event.description, req.body.event.city, req.body.event.date, req.body.photo,])
@@ -198,8 +194,8 @@ router.post('/events', (req, res) => {
             })
             .catch((error) => {
                 console.log(error);
-                res.sendStatus(500)
-            })
+                res.sendStatus(500);
+            });
     } else {
         res.sendStatus(403);
     }
@@ -215,12 +211,11 @@ router.put('/photo', (req, res) => {
             })
             .catch((error) => {
                 console.log(error);
-                res.sendStatus(500)
-            })
+                res.sendStatus(500);
+            });
     } else {
         res.sendStatus(403);
     }
-
 });
 
 
