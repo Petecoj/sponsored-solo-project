@@ -9,28 +9,28 @@ const styles = theme => ({
     },
 });
 
-class ContainedButtons extends Component {
 
+class ContainedButtons extends Component {
 handleProfileSubmit = () => {
-    this.props.dispatch({
+    const { newProfile } = this.props;
+    const { dispatch } = this.props;
+    dispatch({
         type: 'CREATE_PROFILE',
-        payload: this.props.newProfile
-    })
+        payload: newProfile,
+    });
 }
 
     render() {
-
-
         const { classes } = this.props;
         return (
-            <div>
-                <Button onClick={this.handleProfileSubmit} variant="contained" color="primary" className={classes.button}>
+          <div>
+            <Button onClick={this.handleProfileSubmit} variant="contained" color="primary" className={classes.button}>
                     Submit
-                </Button>
-            </div>
+            </Button>
+          </div>
         );
     }
 }
 
-const styledCreateProfileButton = withStyles(styles)(ContainedButtons)
+const styledCreateProfileButton = withStyles(styles)(ContainedButtons);
 export default connect()(styledCreateProfileButton);

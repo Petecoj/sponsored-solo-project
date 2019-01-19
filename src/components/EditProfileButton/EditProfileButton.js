@@ -13,10 +13,11 @@ const styles = theme => ({
 
 function EditProfileButton(props) {
   const { classes } = props;
+  const { handleClickOpen } = props;
   return (
     <div>
 
-      <Button style={{ backgroundColor: 'lightSkyBlue' }} onClick={props.handleClickOpen} variant="contained" color="primary" className={classes.button}>
+      <Button style={{ backgroundColor: 'lightSkyBlue' }} onClick={handleClickOpen} variant="contained" color="primary" className={classes.button}>
         Edit Profile
       </Button>
 

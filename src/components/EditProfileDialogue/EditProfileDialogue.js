@@ -37,12 +37,14 @@ class FormDialog extends React.Component {
   }
 
   handleChangeFor = (propertyName) => {
+    const { sponsor } = this.state;
+    const { id } = this.props;
     return (event) => {
       this.setState({
         sponsor: {
-          ...this.state.sponsor,
+          ...sponsor,
           [propertyName]: event.target.value,
-          id: this.props.id
+          id,
 
         },
       });
@@ -59,9 +61,11 @@ class FormDialog extends React.Component {
   };
 
   submitProfile = () => {
-    this.props.dispatch({
+    const { dispatch } = this.props;
+    const { sponsor } = this.state;
+    dispatch({
       type: 'UPDATE_PROFILE',
-      payload: this.state.sponsor
+      payload: sponsor,
     });
     this.handleClose();
     toast.success('Profile Updated!');
@@ -75,12 +79,12 @@ class FormDialog extends React.Component {
   }
 
   render() {
-    console.log(this.state.sponsor);
-
+    const { open } = this.state;
+    const { sponsor } = this.state;
     return (
       <div>
         <Dialog
-          open={this.state.open}
+          open={open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
@@ -95,7 +99,7 @@ class FormDialog extends React.Component {
               label="Email"
               fullWidth
               onChange={this.handleChangeFor('email')}
-              value={this.state.sponsor.email}
+              value={sponsor.email}
 
             />
             <TextField
@@ -104,14 +108,14 @@ class FormDialog extends React.Component {
               label="Phone"
               fullWidth
               onChange={this.handleChangeFor('phone')}
-              defaultValue={this.state.sponsor.phone}
+              defaultValue={sponsor.phone}
             />
             <TextField
               autoFocus
               margin="dense"
               label="City"
               fullWidth
-              defaultValue={this.state.sponsor.city}
+              defaultValue={sponsor.city}
               onChange={this.handleChangeFor('city')}
             />
             <TextField
@@ -119,7 +123,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="State"
               fullWidth
-              defaultValue={this.state.sponsor.state}
+              defaultValue={sponsor.state}
               onChange={this.handleChangeFor('state')}
             />
             <TextField
@@ -127,7 +131,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="Hobbies/Interests"
               fullWidth
-              defaultValue={this.state.sponsor.hobbies}
+              defaultValue={sponsor.hobbies}
               onChange={this.handleChangeFor('hobbies')}
             />
             <TextField
@@ -135,7 +139,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="Addiction History"
               fullWidth
-              defaultValue={this.state.sponsor.history}
+              defaultValue={sponsor.history}
               onChange={this.handleChangeFor('history')}
             />
             <TextField
@@ -143,7 +147,7 @@ class FormDialog extends React.Component {
               margin="dense"
               label="Years Sober"
               fullWidth
-              defaultValue={this.state.sponsor.years_sober}
+              defaultValue={sponsor.years_sober}
               onChange={this.handleChangeFor('years_sober')}
 
             />
@@ -159,7 +163,7 @@ class FormDialog extends React.Component {
         </Dialog>
         <EditProfileButton handleClickOpen={this.handleClickOpen} />
         <ToastContainer
-          hideProgressBar={true}
+          hideProgressBar
           autoClose={3000}
         />
       </div>

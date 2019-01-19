@@ -64,8 +64,7 @@ class EventListPage extends Component {
             <h2 style={{ color: 'white', textAlign: 'center', fontSize: '24px' }}>
                     Events Happening in Your city
             </h2>
-            <form style=
-              {{
+            <form style={{
                 display: 'flex',
                 position: 'right',
                 height: 60,

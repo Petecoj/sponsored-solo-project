@@ -26,7 +26,8 @@ class DatePickers extends Component {
 }
 
     submitEvent = () => {
-        this.props.dispatch({
+        const { dispatch } = this.props;
+        dispatch({
           type: 'NEW_EVENT',
           payload: this.state,
         });

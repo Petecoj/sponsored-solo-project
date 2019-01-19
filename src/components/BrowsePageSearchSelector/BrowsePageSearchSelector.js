@@ -38,6 +38,7 @@ class BrowsePageSearchSelector extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { open, age } = this.state;
 
     return (
       <form autoComplete="off">
@@ -47,10 +48,10 @@ class BrowsePageSearchSelector extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
           <Select
-            open={this.state.open}
+            open={open}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
-            value={this.state.age}
+            value={age}
             onChange={this.handleChange}
             inputProps={{
               name: 'age',
